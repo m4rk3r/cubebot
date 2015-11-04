@@ -1,0 +1,84 @@
+@import 'fn.scss';
+
+html,body {
+	margin:0;
+	width:100%;
+	height:100%;
+
+	width:50000px;
+	height:50000px;
+	background-image:url(/img/dot.svg);
+
+}
+
+		$w:90vh;
+		$h:$w;
+#container {
+	position:fixed;
+	left: 50%;
+	top:50%;
+	margin-left: -($w/2);
+	margin-top: -($h/2);
+  	
+  	#intermediary {
+  		perspective: 3000px;
+  		perspective-origin: 50% 50%;
+  	}
+
+	#cube {
+
+		z-index:99;
+		padding:0;
+
+		width:$w;
+		height:$h;
+		transform-style: preserve-3d;
+
+		li {
+			position:absolute;
+			width:100%;
+			height:100%;
+			display:none;
+
+			text-align:center;
+			line-height:$h;
+			font-size:25px;
+
+			&.front {
+				background-color:yellow;
+				display:block;
+				@include transform(translateZ($w/2));
+			}
+
+			&.right {
+				background-color:red;
+				display:block;
+				@include transform(translateX($w/2) rotateY(90deg));
+			}
+
+			&.back {
+				background-color:blue;
+				display:block;
+				@include transform(translateZ(-$w/2) rotateY(180deg));
+			}
+
+			&.left {
+				background-color:green;
+				display:block;
+				@include transform(translateX(-$w/2) rotateY(-90deg));
+			}
+
+			&.top {
+				background-color:purple;
+				display:block;
+				@include transform(translateY(-$w/2) rotateX(90deg));
+			}
+
+			&.bottom {
+				background-color:magenta;
+				display:block;
+				@include transform(translateY($w/2) rotateX(-90deg));
+			}			
+		}
+	}
+}

@@ -1,0 +1,27 @@
+{
+  "name": "cubebot",
+  "version": "1.0.0",
+  "description": "Cubebot micro.site",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.1.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.9.11",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geniecheng/cubebot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/geniecheng/cubebot/issues"
+  },
+  "homepage": "https://github.com/geniecheng/cubebot#readme"
+}

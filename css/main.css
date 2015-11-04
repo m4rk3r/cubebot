@@ -1,0 +1,74 @@
+/* flexbox specs */
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  width: 50000px;
+  height: 50000px;
+  background-image: url(/img/dot.svg); }
+
+#container {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-left: -45vh;
+  margin-top: -45vh; }
+  #container #intermediary {
+    perspective: 3000px;
+    perspective-origin: 50% 50%; }
+  #container #cube {
+    z-index: 99;
+    padding: 0;
+    width: 90vh;
+    height: 90vh;
+    transform-style: preserve-3d; }
+    #container #cube li {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: none;
+      text-align: center;
+      line-height: 90vh;
+      font-size: 25px; }
+      #container #cube li.front {
+        background-color: yellow;
+        display: block;
+        -webkit-transform: translateZ(45vh);
+        -moz-transform: translateZ(45vh);
+        -ms-transform: translateZ(45vh);
+        transform: translateZ(45vh); }
+      #container #cube li.right {
+        background-color: red;
+        display: block;
+        -webkit-transform: translateX(45vh) rotateY(90deg);
+        -moz-transform: translateX(45vh) rotateY(90deg);
+        -ms-transform: translateX(45vh) rotateY(90deg);
+        transform: translateX(45vh) rotateY(90deg); }
+      #container #cube li.back {
+        background-color: blue;
+        display: block;
+        -webkit-transform: translateZ(-45vh) rotateY(180deg);
+        -moz-transform: translateZ(-45vh) rotateY(180deg);
+        -ms-transform: translateZ(-45vh) rotateY(180deg);
+        transform: translateZ(-45vh) rotateY(180deg); }
+      #container #cube li.left {
+        background-color: green;
+        display: block;
+        -webkit-transform: translateX(-45vh) rotateY(-90deg);
+        -moz-transform: translateX(-45vh) rotateY(-90deg);
+        -ms-transform: translateX(-45vh) rotateY(-90deg);
+        transform: translateX(-45vh) rotateY(-90deg); }
+      #container #cube li.top {
+        background-color: purple;
+        display: block;
+        -webkit-transform: translateY(-45vh) rotateX(90deg);
+        -moz-transform: translateY(-45vh) rotateX(90deg);
+        -ms-transform: translateY(-45vh) rotateX(90deg);
+        transform: translateY(-45vh) rotateX(90deg); }
+      #container #cube li.bottom {
+        background-color: magenta;
+        display: block;
+        -webkit-transform: translateY(45vh) rotateX(-90deg);
+        -moz-transform: translateY(45vh) rotateX(-90deg);
+        -ms-transform: translateY(45vh) rotateX(-90deg);
+        transform: translateY(45vh) rotateX(-90deg); }

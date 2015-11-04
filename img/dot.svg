@@ -1,0 +1,54 @@
+<?xml version="1.0"?><svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>blue-dot</title>
+ <defs>
+  <linearGradient id="linearGradient24084">
+   <stop stop-color="#ffffff" id="stop24086" offset="0"/>
+   <stop stop-color="#ffffff" stop-opacity="0" id="stop24088" offset="1"/>
+  </linearGradient>
+  <linearGradient id="linearGradient22118">
+   <stop stop-color="#ffffff" id="stop22120" offset="0"/>
+   <stop stop-color="#000000" stop-opacity="0" id="stop22122" offset="1"/>
+  </linearGradient>
+  <linearGradient id="linearGradient20168">
+   <stop stop-color="#000000" id="stop20170" offset="0"/>
+   <stop stop-color="#000000" stop-opacity="0.498039" offset="0.5" id="stop21145"/>
+   <stop stop-color="#0035ff" stop-opacity="0" id="stop20172" offset="1"/>
+  </linearGradient>
+  <linearGradient id="linearGradient17227">
+   <stop stop-color="#000000" stop-opacity="0" id="stop17229" offset="0"/>
+   <stop stop-color="#0000ff" id="stop17237" offset="0.932203"/>
+   <stop stop-color="#000000" stop-opacity="0" id="stop17231" offset="1"/>
+  </linearGradient>
+  <linearGradient id="linearGradient14173">
+   <stop stop-color="#000000" stop-opacity="0" offset="0" id="stop14175"/>
+   <stop stop-color="#000000" offset="1" id="stop14177"/>
+  </linearGradient>
+  <linearGradient id="linearGradient11028">
+   <stop stop-color="#ff0000" offset="0" id="stop11030"/>
+   <stop stop-color="#00ffff" offset="1" id="stop11032"/>
+  </linearGradient>
+  <radialGradient gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.1371958,0,0,0.1271633,366.0756,1335.5867)" r="284.78571" fy="862.1394" fx="424.28497" cy="862.1394" cx="424.28497" id="radialGradient7116" xlink:href="#linearGradient14173"/>
+  <radialGradient gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.1862322,-0.2934871,4.1138595,2.4441792,-6242.7664,-2188.6365)" r="284.78571" fy="1590.9336" fx="371.24945" cy="1590.9336" cx="371.24945" id="radialGradient11026" xlink:href="#linearGradient11028"/>
+  <radialGradient gradientTransform="matrix(0.9457266,-0.3467312,0.3497758,1.0861244,-264.63693,-522.35077)" gradientUnits="userSpaceOnUse" r="325.71429" fy="543.79077" fx="-1371.4286" cy="543.79077" cx="-1371.4286" id="radialGradient18210" xlink:href="#linearGradient17227"/>
+  <radialGradient gradientTransform="matrix(-4.8900749,2.1398118,-0.4354487,-1.0379445,-8233.0016,4073.4211)" gradientUnits="userSpaceOnUse" r="325.71429" fy="405.55997" fx="-1439.6329" cy="405.55997" cx="-1439.6329" id="radialGradient20174" xlink:href="#linearGradient20168"/>
+  <radialGradient gradientUnits="userSpaceOnUse" gradientTransform="matrix(1,0,0,0.775,0,255.10294)" r="57.142857" fy="1133.7908" fx="-708.57141" cy="1133.7908" cx="-708.57141" id="radialGradient22124" xlink:href="#linearGradient22118"/>
+  <radialGradient gradientUnits="userSpaceOnUse" gradientTransform="matrix(-0.7212741,4.5609549e-2,-0.2052002,-0.3750191,-986.99152,1591.3017)" r="43.966099" fy="1133.7908" fx="-708.57141" cy="1133.7908" cx="-708.57141" id="radialGradient24090" xlink:href="#linearGradient24084"/>
+  <radialGradient r="325.71429" fy="543.79077" fx="-1371.4286" cy="543.79077" cx="-1371.4286" gradientTransform="matrix(0.9457266,-0.3467312,0.3497758,1.0861244,-264.63693,-522.35077)" gradientUnits="userSpaceOnUse" id="radialGradient24099" xlink:href="#linearGradient17227"/>
+  <radialGradient r="325.71429" fy="405.55997" fx="-1439.6329" cy="405.55997" cx="-1439.6329" gradientTransform="matrix(-4.8900749,2.1398118,-0.4354487,-1.0379445,-8233.0016,4073.4211)" gradientUnits="userSpaceOnUse" id="radialGradient24101" xlink:href="#linearGradient20168"/>
+  <radialGradient r="57.142857" fy="1133.7908" fx="-708.57141" cy="1133.7908" cx="-708.57141" gradientTransform="matrix(1,0,0,0.775,0,255.10294)" gradientUnits="userSpaceOnUse" id="radialGradient24103" xlink:href="#linearGradient22118"/>
+  <radialGradient r="43.966099" fy="1133.7908" fx="-708.57141" cy="1133.7908" cx="-708.57141" gradientTransform="matrix(-0.7212741,4.5609549e-2,-0.2052002,-0.3750191,-986.99152,1591.3017)" gradientUnits="userSpaceOnUse" id="radialGradient24105" xlink:href="#linearGradient24084"/>
+ </defs>
+ <metadata id="metadata6124">image/svg+xmlGlass Blue Ball5 feb 2008 v2SABROGSABROGSABROGRussianBallGlassBlue</metadata>
+ <g>
+  <title>Layer 1</title>
+  <g id="layer1">
+   <g transform="matrix(0.0122807 0 0 0.0118246 -119.894 257.307)" id="g24092">
+    <path fill="#212160" fill-rule="evenodd" id="path17147" d="m12103.887695,-19734.205078a325.714294,325.714294 0 1 1 -651.428711,0a325.714294,325.714294 0 1 1 651.428711,0z"/>
+    <path fill="#212160" fill-rule="evenodd" id="path17225" d="m12095.229492,-19738.519531a317.157196,321.198822 0 1 1 -634.313477,0a317.157196,321.198822 0 1 1 634.313477,0z"/>
+    <path fill="#212160" fill-rule="evenodd" id="path18212" d="m12083.319336,-19714.142578a305.175018,310.903625 0 1 1 -610.349609,-34.583984a305.175018,310.903625 0 1 1 610.349609,34.583984z"/>
+    <path fill="#212160" fill-rule="evenodd" id="path21147" d="m11813.833008,-19850.716797a57.14286,44.285709 0 1 1 -114.286133,0a57.14286,44.285709 0 1 1 114.286133,0z"/>
+    <path fill="#212160" fill-rule="evenodd" id="path24064" d="m11908.452148,-19530.689453a53.719067,16.251617 0 1 1 -0.049805,-0.193359"/>
+   </g>
+  </g>
+ </g>
+</svg>
