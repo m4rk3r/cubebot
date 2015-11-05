@@ -1,0 +1,3 @@
++ scroll fx (xbrowser wants? elastic zoom fx?)
++ cube face always up, or allow disorientation?
++ related to above.. supported browsers?
