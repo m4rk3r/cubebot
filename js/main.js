@@ -8,15 +8,15 @@ var lDeltaY = 0;
 
 $(function (){
 	window.scrollTo(w/2, h/2);
-	lDeltaX = w/2;
-	lDeltaY = h/2;
+	lDeltaX = 0;
+	lDeltaY = 0;
 	var timer;
 
 	var $cube = $('#cube');
 	var init_transform = 'translateX('+(window.innerWidth*0.5 + w*0.5-$cube.width()*0.5)+'px) '+
 						 'translateY('+(window.innerHeight*0.5 + h*0.5-$cube.height()*0.5)+'px)';
 	//$cube.css('transform', init_transform);
-	
+
 	var suppress = false;
 
 	$(window).on('scroll', function (evt){ 
