@@ -4,8 +4,11 @@
 *.*~
 
 *.pyc
+*.sqlite3
 
 
+public
 .sass-cache
 .DS_Store
 node_modules
+local_settings.py
