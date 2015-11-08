@@ -42,7 +42,7 @@ class Command(BaseCommand):
             client_secret=settings.INSTA_ACCESS_SECRET)
 
         _id = InstagramLike.objects.all().last()
-        print _id.insta_id
+
         items = (api.user_liked_media(max_id=_id.insta_id) if _id else 
             api.user_liked_media())
 
