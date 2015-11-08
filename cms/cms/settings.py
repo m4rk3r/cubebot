@@ -6,8 +6,11 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
+def env_var(key):
+    return os.environ[key] if key in os.environ.keys() else ''
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY'] if 'SECRET_KEY' in os.environ.keys() else ''
+SECRET_KEY = env_var('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -92,6 +95,12 @@ USE_L10N = True
 
 USE_TZ = True
 
+INSTA_ACCESS_TOKEN = env_var('INSTA_ACCESS_TOKEN')
+INSTA_ACCESS_SECRET = env_var('INSTA_ACCESS_SECRET')
+
+YT_PLAYLIST = 'PLE251E1C4A6328149'
+YT_ACCESS_TOKEN = env_var('YT_ACCESS_TOKEN')
+YT_URL = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId={id}&key={key}&maxResults=50'
 
 try: 
     from local_settings import *

@@ -6,13 +6,6 @@ var keyMap = {
 	40:'down'
 }
 
-/*
-var instagrams = [];
-$.getJSON('https://api.instagram.com/v1/tags/cubebot/media/recent?client_id=c599374d1b2547a8a6760d8c4c0b0904',function (resp){
-	console.log(resp.data);
-})
-*/
-
 $(function (){
 	var $cube = $('#cube');
 
