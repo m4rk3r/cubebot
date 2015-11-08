@@ -1,4 +1,5 @@
 from django.db import models
+from cms.managers import PublishedManager
 
 
 class InstagramLike(models.Model):
@@ -10,6 +11,8 @@ class InstagramLike(models.Model):
 	published = models.BooleanField(default=True)
 	retreived = models.DateTimeField(auto_now_add=True)
 
+	objects = PublishedManager()
+
 	def __unicode__(self):
 		return self.url
 
@@ -20,6 +23,8 @@ class YoutubeLike(models.Model):
 	title = models.CharField(max_length=255, blank=True, null=True)
 	published = models.BooleanField(default=True)
 	retreived = models.DateTimeField(auto_now_add=True)
+
+	objects = PublishedManager()
 
 	def __unicode__(self):
 		return self.yt_id

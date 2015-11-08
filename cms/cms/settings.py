@@ -39,6 +39,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
+    'corsheaders',
+
     'solutions',
     'content',
     'social',
@@ -46,6 +49,7 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -101,6 +105,15 @@ INSTA_ACCESS_SECRET = env_var('INSTA_ACCESS_SECRET')
 YT_PLAYLIST = 'PLE251E1C4A6328149'
 YT_ACCESS_TOKEN = env_var('YT_ACCESS_TOKEN')
 YT_URL = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId={id}&key={key}&maxResults=50'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
+# allow CORS for all for now
+CORS_ORIGIN_ALLOW_ALL = True
 
 try: 
     from local_settings import *

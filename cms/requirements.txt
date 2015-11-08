@@ -11,3 +11,4 @@ static==0.4
 djangorestframework==3.3.1
 python-instagram
 requests
+django-cors-headers

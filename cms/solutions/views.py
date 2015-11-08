@@ -1,5 +1,8 @@
-from django.http import JsonResponse
+from rest_framework import viewsets
+from models import Solution
+from serializers import SolutionSerializer
 
-# Create your views here.
-def get_solutions(request):
-	return JsonResponse({})
+
+class SolutionViewSet(viewsets.ModelViewSet):
+    queryset = Solution.objects.published()
+    serializer_class = SolutionSerializer

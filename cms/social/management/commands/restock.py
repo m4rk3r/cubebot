@@ -6,10 +6,6 @@ from instagram.client import InstagramAPI
 import requests
 
 
-def insta_auth():
-    pass
-
-
 class Command(BaseCommand):
     help = 'restock liked items from social accounts'
 

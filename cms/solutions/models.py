@@ -1,14 +1,18 @@
 from django.db import models
 
+from cms.managers import PublishedManager
+
 
 def img_path(o, f):
-	return 'solutions/%s/%s' % (o.id, f)
+	return 'solutions/%s' %  f
 
 
 class Solution(models.Model):
 	published = models.BooleanField(default=True)
 	title = models.CharField(max_length=255, blank=True, null=True)
 	description = models.TextField(max_length=255,blank=True,null=True)
+
+	objects = PublishedManager()
 
 	def __unicode__(self):
 		return 'Solution: %s' % self.title

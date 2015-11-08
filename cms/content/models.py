@@ -1,5 +1,7 @@
 from django.db import models
 
+from cms.managers import PublishedManager
+
 
 def img_path(o, f):
 	return 'photography/%s' % f
@@ -20,6 +22,8 @@ class CaptionedPhotography(models.Model):
 	published = models.BooleanField(default=True)
 	photo = models.ImageField(upload_to=img_path, blank=True, null=True)
 	caption = models.CharField(max_length=500, blank=True, null=True)
+
+	objects = PublishedManager()
 
 	def __unicode__(self):
 		return 'Photo item %s' % self.id
