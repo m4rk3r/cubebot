@@ -4,6 +4,9 @@ html,body {
 	margin:0;
 	width:100%;
 	height:100%;
+
+    //-webkit-font-smoothing: antialiased;
+    //-moz-osx-font-smoothing: grayscale;
 }
 
 .rotate {
@@ -66,12 +69,14 @@ $kw: 75px;
 		z-index:99;
 		padding:0;
 		list-style-type:none;
+        margin:0;
 
 		width:$w;
 		height:$h;
 		transform-style: preserve-3d;
 
 		@include transition(transform .66s ease-in-out);
+        @include transform(translateZ(-$w/2));
 
 		&.right {
 			@include transform(rotateY(-90deg));
@@ -95,14 +100,16 @@ $kw: 75px;
 			height:100%;
 
 			overflow:auto;
+            filter: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><filter id="gaussian_blur"><feGaussianBlur in="SourceGraphic" stdDeviation="0" /></filter></defs></svg>#gaussian_blur');
 
 			&.instagram {
 				.photo {
 					position:absolute;
-					width:200px;
+					width:300px;
 
 					h3 {
 						font-size:12px;
+                        margin-top:0;
 
 						a:hover {
 							color:black;
@@ -138,6 +145,10 @@ $kw: 75px;
 					img {
 						width:100%;
 					}
+
+                    p {
+                        text-align:center;
+                    }
 				}
 			}
 

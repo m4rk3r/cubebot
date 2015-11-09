@@ -26,7 +26,7 @@ $(function (){
 
 	$('.rotate').on('click', function (){
 		z += 90;
-		$cube.css('transform', 'rotateZ('+z+'deg) rotateX('+y+'deg) rotateY('+x+'deg)');
+		$cube.css('transform', 'translateZ(-45vh) rotateZ('+z+'deg) rotateX('+y+'deg) rotateY('+x+'deg)');
 	})
 
 	$(document).on('keyup',function(evt){
@@ -51,6 +51,6 @@ $(function (){
 
 		console.log('x',x,'y',y,'z',z);
 
-		$cube.css('transform', 'rotateZ('+z+'deg) rotateX('+y+'deg) rotateY('+x+'deg)');
+		$cube.css('transform', 'translateZ(-45vh) rotateZ('+z+'deg) rotateX('+y+'deg) rotateY('+x+'deg)');
 	})
 });

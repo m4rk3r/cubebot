@@ -47,37 +47,40 @@
     flex-shrink:$val;
 }
 
-$w:90vh;
+$w:100vh;
 $h:$w;
 
 @mixin faces(){
     &.front {
-        background-color:yellow;
+        background-color:rgba(35,255,3,1);
+        opacity:0.85;
         @include transform(translateZ($w/2));
 
     }
     &.right {
-        background-color:red;
+        background-color:#ECFF5B;
+        opacity:1;
         @include transform(translateX($w/2) rotateY(90deg));
     }
 
     &.back {
-        background-color:blue;
+        background-color:rgba(0,0,200,0.75);
         @include transform(translateZ(-$w/2) rotateY(180deg));
     }
 
     &.left {
-        background-color:green;
+        background-color:#E68DEC;
+        opacity: 0.95;
         @include transform(translateX(-$w/2) rotateY(-90deg));
     }
 
     &.top {
-        background-color:purple;
+        background-color:#E8EC21;
         @include transform(translateY(-$w/2) rotateX(90deg));
     }
 
     &.bottom {
-        background-color:magenta;
+        background-color:#81C9EC;
         @include transform(translateY($w/2) rotateX(-90deg));
     }
 }

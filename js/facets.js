@@ -29,12 +29,17 @@ var Gram = Backbone.Model.extend({
 	template: _.template(
 		"<a href='<%= o.get('url') %>'><img src='<%= o.get('photo') %>'></a>"+
 		"<h3><a href='<%= o.get('url') %>'>"+
-		"<%= o.get_caption() %>"+
+		"<%= o.user() %>"+
+		//"<%= o.get_caption() %>"+
 		"</a></h3>"
 	),
 
 	intitialze: function (){
-		_.bindAll(this,'get_caption');
+		_.bindAll(this,'get_caption','user');
+	},
+
+	user: function (){
+		return '@' + this.get('user');
 	},
 
 	get_caption: function (){
@@ -84,8 +89,8 @@ var Instagram = Backbone.View.extend({
 			var $ele = ele.render().$el;
 
 			$ele.css({
-				'left': _.random(100)+'%',
-				'top': _.random(100)+'%'
+				'left': _.random(-5,80)+'%',
+				'top': _.random(-5,80)+'%'
 			})
 
 			$ele.find('img').css('width',_.random(40,90)+'%');
@@ -158,8 +163,8 @@ var Youtube = Backbone.View.extend({
 var Mix = Backbone.Model.extend({
 	truncate:20,
 	template: _.template(
+		"<h3><%= o.get('title') %> Solution Key</h3>"+
 		"<img src='<%= o.first_media() %>'>"+
-	  	"<h3><%= o.get('title') %></h3>"+
 	  	"<p><%= o.get('description') %></p>"
 	),
 	initialize: function (){
@@ -213,8 +218,6 @@ var Solution = Backbone.View.extend({
 
 var Links = Backbone.View.extend({});
 var Photos = Backbone.View.extend({});
-
-
 
 var Cube = Backbone.View.extend({
 	tagName:'ul',

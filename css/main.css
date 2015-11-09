@@ -54,8 +54,8 @@ nav {
   position: fixed;
   left: 50%;
   top: 50%;
-  margin-left: -45vh;
-  margin-top: -45vh; }
+  margin-left: -50vh;
+  margin-top: -50vh; }
   #container #intermediary {
     perspective: 3000px;
     perspective-origin: 50% 50%; }
@@ -63,14 +63,19 @@ nav {
     z-index: 99;
     padding: 0;
     list-style-type: none;
-    width: 90vh;
-    height: 90vh;
+    margin: 0;
+    width: 100vh;
+    height: 100vh;
     transform-style: preserve-3d;
     -webkit-transition: transform 0.66s ease-in-out;
     -moz-transition: transform 0.66s ease-in-out;
     -ms-transition: transform 0.66s ease-in-out;
     -o-transition: transform 0.66s ease-in-out;
-    transition: transform 0.66s ease-in-out; }
+    transition: transform 0.66s ease-in-out;
+    -webkit-transform: translateZ(-50vh);
+    -moz-transform: translateZ(-50vh);
+    -ms-transform: translateZ(-50vh);
+    transform: translateZ(-50vh); }
     #container #cube.right {
       -webkit-transform: rotateY(-90deg);
       -moz-transform: rotateY(-90deg);
@@ -101,12 +106,14 @@ nav {
       width: 100%;
       height: 100%;
       overflow: auto;
+      filter: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><filter id="gaussian_blur"><feGaussianBlur in="SourceGraphic" stdDeviation="0" /></filter></defs></svg>#gaussian_blur');
       /* geometry definitions */ }
       #container #cube li.instagram .photo {
         position: absolute;
-        width: 200px; }
+        width: 300px; }
         #container #cube li.instagram .photo h3 {
-          font-size: 12px; }
+          font-size: 12px;
+          margin-top: 0; }
           #container #cube li.instagram .photo h3 a:hover {
             color: black; }
       #container #cube li.youtube {
@@ -147,39 +154,44 @@ nav {
           width: 70%; }
           #container #cube li.solution .solution-item img {
             width: 100%; }
+          #container #cube li.solution .solution-item p {
+            text-align: center; }
       #container #cube li.front {
-        background-color: yellow;
-        -webkit-transform: translateZ(45vh);
-        -moz-transform: translateZ(45vh);
-        -ms-transform: translateZ(45vh);
-        transform: translateZ(45vh); }
+        background-color: #23ff03;
+        opacity: 0.85;
+        -webkit-transform: translateZ(50vh);
+        -moz-transform: translateZ(50vh);
+        -ms-transform: translateZ(50vh);
+        transform: translateZ(50vh); }
       #container #cube li.right {
-        background-color: red;
-        -webkit-transform: translateX(45vh) rotateY(90deg);
-        -moz-transform: translateX(45vh) rotateY(90deg);
-        -ms-transform: translateX(45vh) rotateY(90deg);
-        transform: translateX(45vh) rotateY(90deg); }
+        background-color: #ECFF5B;
+        opacity: 1;
+        -webkit-transform: translateX(50vh) rotateY(90deg);
+        -moz-transform: translateX(50vh) rotateY(90deg);
+        -ms-transform: translateX(50vh) rotateY(90deg);
+        transform: translateX(50vh) rotateY(90deg); }
       #container #cube li.back {
-        background-color: blue;
-        -webkit-transform: translateZ(-45vh) rotateY(180deg);
-        -moz-transform: translateZ(-45vh) rotateY(180deg);
-        -ms-transform: translateZ(-45vh) rotateY(180deg);
-        transform: translateZ(-45vh) rotateY(180deg); }
+        background-color: rgba(0, 0, 200, 0.75);
+        -webkit-transform: translateZ(-50vh) rotateY(180deg);
+        -moz-transform: translateZ(-50vh) rotateY(180deg);
+        -ms-transform: translateZ(-50vh) rotateY(180deg);
+        transform: translateZ(-50vh) rotateY(180deg); }
       #container #cube li.left {
-        background-color: green;
-        -webkit-transform: translateX(-45vh) rotateY(-90deg);
-        -moz-transform: translateX(-45vh) rotateY(-90deg);
-        -ms-transform: translateX(-45vh) rotateY(-90deg);
-        transform: translateX(-45vh) rotateY(-90deg); }
+        background-color: #E68DEC;
+        opacity: 0.95;
+        -webkit-transform: translateX(-50vh) rotateY(-90deg);
+        -moz-transform: translateX(-50vh) rotateY(-90deg);
+        -ms-transform: translateX(-50vh) rotateY(-90deg);
+        transform: translateX(-50vh) rotateY(-90deg); }
       #container #cube li.top {
-        background-color: purple;
-        -webkit-transform: translateY(-45vh) rotateX(90deg);
-        -moz-transform: translateY(-45vh) rotateX(90deg);
-        -ms-transform: translateY(-45vh) rotateX(90deg);
-        transform: translateY(-45vh) rotateX(90deg); }
+        background-color: #E8EC21;
+        -webkit-transform: translateY(-50vh) rotateX(90deg);
+        -moz-transform: translateY(-50vh) rotateX(90deg);
+        -ms-transform: translateY(-50vh) rotateX(90deg);
+        transform: translateY(-50vh) rotateX(90deg); }
       #container #cube li.bottom {
-        background-color: magenta;
-        -webkit-transform: translateY(45vh) rotateX(-90deg);
-        -moz-transform: translateY(45vh) rotateX(-90deg);
-        -ms-transform: translateY(45vh) rotateX(-90deg);
-        transform: translateY(45vh) rotateX(-90deg); }
+        background-color: #81C9EC;
+        -webkit-transform: translateY(50vh) rotateX(-90deg);
+        -moz-transform: translateY(50vh) rotateX(-90deg);
+        -ms-transform: translateY(50vh) rotateX(-90deg);
+        transform: translateY(50vh) rotateX(-90deg); }
