@@ -7,13 +7,17 @@ var keyMap = {
 }
 
 $(function (){
-	//var $cube = $('#cube');
+	var $shop = $('nav');
+
+	var $container = $('#container');
 	var cube = new Cube();
 	var $cube = cube.render().$el;
 
 	$('#intermediary').append(
 		$cube
 	);
+
+	$shop.css('left', $container.offset().left-$shop.width()*2);
 
 	var idx = 0;
 	var x = 0;
@@ -45,7 +49,7 @@ $(function (){
 				break;
 		}
 
-		console.log('x',x,'y',y,'z',z)
+		console.log('x',x,'y',y,'z',z);
 
 		$cube.css('transform', 'rotateZ('+z+'deg) rotateX('+y+'deg) rotateY('+x+'deg)');
 	})

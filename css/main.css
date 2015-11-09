@@ -6,9 +6,10 @@ html, body {
 
 .rotate {
   position: fixed;
-  top: 25px;
-  right: 25px;
-  width: 50px; }
+  top: 3%;
+  right: 3%;
+  width: 35px;
+  padding: 25px; }
 
 nav {
   border: solid 2px #000;
@@ -20,6 +21,34 @@ nav {
   left: 10%;
   top: 2.5%;
   z-index: 999; }
+
+#keyMap {
+  position: fixed;
+  right: 3%;
+  bottom: 3%;
+  list-style-type: none; }
+  #keyMap li {
+    position: absolute; }
+  #keyMap li:nth-child(1) {
+    -webkit-transform: translateX(-75px) translateY(-2px);
+    -moz-transform: translateX(-75px) translateY(-2px);
+    -ms-transform: translateX(-75px) translateY(-2px);
+    transform: translateX(-75px) translateY(-2px); }
+  #keyMap li:nth-child(2) {
+    -webkit-transform: translateX(-37.5px) translateY(-30px) rotateZ(90deg);
+    -moz-transform: translateX(-37.5px) translateY(-30px) rotateZ(90deg);
+    -ms-transform: translateX(-37.5px) translateY(-30px) rotateZ(90deg);
+    transform: translateX(-37.5px) translateY(-30px) rotateZ(90deg); }
+  #keyMap li:nth-child(3) {
+    -webkit-transform: rotateZ(180deg);
+    -moz-transform: rotateZ(180deg);
+    -ms-transform: rotateZ(180deg);
+    transform: rotateZ(180deg); }
+  #keyMap li:nth-child(4) {
+    -webkit-transform: translateX(-39.5px) translateY(-2px) rotateZ(-90deg);
+    -moz-transform: translateX(-39.5px) translateY(-2px) rotateZ(-90deg);
+    -ms-transform: translateX(-39.5px) translateY(-2px) rotateZ(-90deg);
+    transform: translateX(-39.5px) translateY(-2px) rotateZ(-90deg); }
 
 #container {
   position: fixed;
@@ -33,6 +62,7 @@ nav {
   #container #cube {
     z-index: 99;
     padding: 0;
+    list-style-type: none;
     width: 90vh;
     height: 90vh;
     transform-style: preserve-3d;
@@ -73,11 +103,12 @@ nav {
       overflow: auto;
       /* geometry definitions */ }
       #container #cube li.instagram .photo {
-        position: absolute; }
-        #container #cube li.instagram .photo img {
-          width: 200px; }
+        position: absolute;
+        width: 200px; }
         #container #cube li.instagram .photo h3 {
           font-size: 12px; }
+          #container #cube li.instagram .photo h3 a:hover {
+            color: black; }
       #container #cube li.youtube {
         display: -webkit-box;
         display: -moz-box;

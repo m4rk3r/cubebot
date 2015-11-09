@@ -47,6 +47,9 @@
     flex-shrink:$val;
 }
 
+$w:90vh;
+$h:$w;
+
 @mixin faces(){
     &.front {
         background-color:yellow;

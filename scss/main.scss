@@ -8,9 +8,10 @@ html,body {
 
 .rotate {
 	position:fixed;
-	top:25px;
-	right:25px;
-	width:50px;
+	top:3%;
+	right:3%;
+	width:35px;
+	padding:25px;
 }
 
 nav {
@@ -25,9 +26,29 @@ nav {
 	z-index:999;
 }
 
+$kw: 75px;
+#keyMap {
+	position:fixed;
+	right:3%;
+	bottom:3%;
+	list-style-type:none;
 
-$w:90vh;
-$h:$w;
+	li {position:absolute;}
+
+	li:nth-child(1) {
+		@include transform(translateX(-$kw) translateY(-2px));
+	}
+	li:nth-child(2) {
+		@include transform(translateX(-$kw/2) translateY(-$kw*0.4) rotateZ(90deg));
+	}
+	li:nth-child(3) {
+		@include transform(rotateZ(180deg));
+	}
+	li:nth-child(4) {
+		@include transform(translateX(-$kw/2-2px) translateY(-2px) rotateZ(-90deg));
+	}
+}
+
 
 #container {
 	position:fixed;
@@ -44,13 +65,13 @@ $h:$w;
 	#cube {
 		z-index:99;
 		padding:0;
+		list-style-type:none;
 
 		width:$w;
 		height:$h;
 		transform-style: preserve-3d;
 
 		@include transition(transform .66s ease-in-out);
-		//@include transform(translateZ(0px));
 
 		&.right {
 			@include transform(rotateY(-90deg));
@@ -78,13 +99,14 @@ $h:$w;
 			&.instagram {
 				.photo {
 					position:absolute;
-
-					img {
-						width:200px;
-					}
+					width:200px;
 
 					h3 {
 						font-size:12px;
+
+						a:hover {
+							color:black;
+						}
 					}
 				}
 			}

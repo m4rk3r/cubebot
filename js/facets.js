@@ -88,6 +88,8 @@ var Instagram = Backbone.View.extend({
 				'top': _.random(100)+'%'
 			})
 
+			$ele.find('img').css('width',_.random(40,90)+'%');
+
 			this.$el.append($ele);
 		},this));
 
