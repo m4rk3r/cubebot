@@ -46,3 +46,35 @@
     -webkit-flex-shrink:$val;
     flex-shrink:$val;
 }
+
+@mixin faces(){
+    &.front {
+        background-color:yellow;
+        @include transform(translateZ($w/2));
+
+    }
+    &.right {
+        background-color:red;
+        @include transform(translateX($w/2) rotateY(90deg));
+    }
+
+    &.back {
+        background-color:blue;
+        @include transform(translateZ(-$w/2) rotateY(180deg));
+    }
+
+    &.left {
+        background-color:green;
+        @include transform(translateX(-$w/2) rotateY(-90deg));
+    }
+
+    &.top {
+        background-color:purple;
+        @include transform(translateY(-$w/2) rotateX(90deg));
+    }
+
+    &.bottom {
+        background-color:magenta;
+        @include transform(translateY($w/2) rotateX(-90deg));
+    }
+}

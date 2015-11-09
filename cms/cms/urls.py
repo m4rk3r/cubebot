@@ -16,6 +16,6 @@ router.register(r'photography',CaptionedPhotographyViewSet)
 
 
 urlpatterns = [
-	url(r'^', include(router.urls)),
+	url(r'^api/', include(router.urls)),
 	url(r'^admin/', include(admin.site.urls)),
 ]

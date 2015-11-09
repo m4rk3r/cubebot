@@ -109,11 +109,22 @@ YT_URL = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playl
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE':10,
 }
 
 # allow CORS for all for now
 CORS_ORIGIN_ALLOW_ALL = True
+
+# s3 for media storage
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_ACCESS_KEY_ID = env_var('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env_var('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'cubebot-test'
+AWS_S3_SECURE_URLS = False
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_FILE_OVERWRITE = True
 
 try: 
     from local_settings import *

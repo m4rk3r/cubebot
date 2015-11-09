@@ -1,5 +1,6 @@
 Django==1.8.6
 Pillow==3.0.0
+boto
 wheel==0.24.0
 django-storages
 dj-database-url==0.3.0

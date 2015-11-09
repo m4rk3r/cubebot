@@ -35,7 +35,7 @@ $h:$w;
 	top:50%;
 	margin-left: -($w/2);
 	margin-top: -($h/2);
-  	
+
   	#intermediary {
   		perspective: 3000px;
   		perspective-origin: 50% 50%;
@@ -59,61 +59,68 @@ $h:$w;
 			@include transform(rotateY(90deg));
 		}
 		&.back {
-			@include transform(rotateY(180deg));	
+			@include transform(rotateY(180deg));
 		}
 		&.top {
-			@include transform(rotateX(-90deg));	
+			@include transform(rotateX(-90deg));
 		}
 		&.bottom {
-			@include transform(rotateX(90deg));	
+			@include transform(rotateX(90deg));
 		}
 
 		li {
 			position:absolute;
 			width:100%;
 			height:100%;
-			display:none;
 
-			text-align:center;
-			line-height:$h;
-			font-size:25px;
+			overflow:auto;
 
-			&.front {
-				background-color:yellow;
-				display:block;
-				@include transform(translateZ($w/2));
+			&.instagram {
+				.photo {
+					position:absolute;
 
+					img {
+						width:200px;
+					}
+
+					h3 {
+						font-size:12px;
+					}
+				}
 			}
 
-			&.right {
-				background-color:red;
-				display:block;
-				@include transform(translateX($w/2) rotateY(90deg));
+			&.youtube {
+				@include flexbox();
+				@include direction(column);
+				@include align(center);
+				@include justify(center);
+
+				.video {
+					width:70%;
+
+					iframe {
+						width:100%;
+					}
+				}
 			}
 
-			&.back {
-				background-color:blue;
-				display:block;
-				@include transform(translateZ(-$w/2) rotateY(180deg));
+			&.solution {
+				@include flexbox();
+				@include direction(column);
+				@include align(center);
+				@include justify(center);
+
+				.solution-item {
+					width:70%;
+
+					img {
+						width:100%;
+					}
+				}
 			}
 
-			&.left {
-				background-color:green;
-				display:block;
-				@include transform(translateX(-$w/2) rotateY(-90deg));
-			}
-
-			&.top {
-				background-color:purple;
-				display:block;
-				@include transform(translateY(-$w/2) rotateX(90deg));
-			}
-
-			&.bottom {
-				background-color:magenta;
-				display:block;
-				@include transform(translateY($w/2) rotateX(-90deg));
-			}			
+			/* geometry definitions */
+			@include faces();
 		}
 	}
 }

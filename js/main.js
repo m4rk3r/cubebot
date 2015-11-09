@@ -7,7 +7,13 @@ var keyMap = {
 }
 
 $(function (){
-	var $cube = $('#cube');
+	//var $cube = $('#cube');
+	var cube = new Cube();
+	var $cube = cube.render().$el;
+
+	$('#intermediary').append(
+		$cube
+	);
 
 	var idx = 0;
 	var x = 0;

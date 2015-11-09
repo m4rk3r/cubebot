@@ -70,48 +70,84 @@ nav {
       position: absolute;
       width: 100%;
       height: 100%;
-      display: none;
-      text-align: center;
-      line-height: 90vh;
-      font-size: 25px; }
+      overflow: auto;
+      /* geometry definitions */ }
+      #container #cube li.instagram .photo {
+        position: absolute; }
+        #container #cube li.instagram .photo img {
+          width: 200px; }
+        #container #cube li.instagram .photo h3 {
+          font-size: 12px; }
+      #container #cube li.youtube {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center; }
+        #container #cube li.youtube .video {
+          width: 70%; }
+          #container #cube li.youtube .video iframe {
+            width: 100%; }
+      #container #cube li.solution {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center; }
+        #container #cube li.solution .solution-item {
+          width: 70%; }
+          #container #cube li.solution .solution-item img {
+            width: 100%; }
       #container #cube li.front {
         background-color: yellow;
-        display: block;
         -webkit-transform: translateZ(45vh);
         -moz-transform: translateZ(45vh);
         -ms-transform: translateZ(45vh);
         transform: translateZ(45vh); }
       #container #cube li.right {
         background-color: red;
-        display: block;
         -webkit-transform: translateX(45vh) rotateY(90deg);
         -moz-transform: translateX(45vh) rotateY(90deg);
         -ms-transform: translateX(45vh) rotateY(90deg);
         transform: translateX(45vh) rotateY(90deg); }
       #container #cube li.back {
         background-color: blue;
-        display: block;
         -webkit-transform: translateZ(-45vh) rotateY(180deg);
         -moz-transform: translateZ(-45vh) rotateY(180deg);
         -ms-transform: translateZ(-45vh) rotateY(180deg);
         transform: translateZ(-45vh) rotateY(180deg); }
       #container #cube li.left {
         background-color: green;
-        display: block;
         -webkit-transform: translateX(-45vh) rotateY(-90deg);
         -moz-transform: translateX(-45vh) rotateY(-90deg);
         -ms-transform: translateX(-45vh) rotateY(-90deg);
         transform: translateX(-45vh) rotateY(-90deg); }
       #container #cube li.top {
         background-color: purple;
-        display: block;
         -webkit-transform: translateY(-45vh) rotateX(90deg);
         -moz-transform: translateY(-45vh) rotateX(90deg);
         -ms-transform: translateY(-45vh) rotateX(90deg);
         transform: translateY(-45vh) rotateX(90deg); }
       #container #cube li.bottom {
         background-color: magenta;
-        display: block;
         -webkit-transform: translateY(45vh) rotateX(-90deg);
         -moz-transform: translateY(45vh) rotateX(-90deg);
         -ms-transform: translateY(45vh) rotateX(-90deg);
