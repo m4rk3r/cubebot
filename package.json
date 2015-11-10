@@ -4,8 +4,10 @@
   "description": "Cubebot micro.site",
   "main": "gulpfile.js",
   "dependencies": {
+    "express": "^4.13.3",
     "gulp": "^3.9.0",
-    "gulp-sass": "^2.1.0"
+    "gulp-sass": "^2.1.0",
+    "node": "0.0.0"
   },
   "devDependencies": {
     "browser-sync": "^2.9.11",

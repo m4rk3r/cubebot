@@ -1,4 +1,10 @@
-var URL = 'http://localhost:8000/api';
+
+var URL;
+
+if(window.location.hostname == "localhost")
+	URL = 'http://localhost:8000/api';
+else
+	URL = 'https://morning-thicket-7130.herokuapp.com/api';
 
 
 var BaseCollection = Backbone.Collection.extend({
