@@ -41,8 +41,16 @@ $kw: 75px;
 	right:3%;
 	bottom:3%;
 	list-style-type:none;
+    z-index:99;
 
-	li {position:absolute;}
+	li {
+        position:absolute;
+        cursor:pointer;
+
+        &:hover {
+            color:blue;
+        }
+    }
 
 	li:nth-child(1) {
 		@include transform(translateX(-$kw) translateY(-2px));

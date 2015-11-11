@@ -31,9 +31,13 @@ nav {
   position: fixed;
   right: 3%;
   bottom: 3%;
-  list-style-type: none; }
+  list-style-type: none;
+  z-index: 99; }
   #keyMap li {
-    position: absolute; }
+    position: absolute;
+    cursor: pointer; }
+    #keyMap li:hover {
+      color: blue; }
   #keyMap li:nth-child(1) {
     -webkit-transform: translateX(-75px) translateY(-2px);
     -moz-transform: translateX(-75px) translateY(-2px);
