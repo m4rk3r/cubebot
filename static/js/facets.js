@@ -104,6 +104,9 @@ var Instagram = Backbone.View.extend({
 			this.$el.append($ele);
 		},this));
 
+		var lock = $("<img class='lock' src='/img/eye.svg' data-face='"+this.face+"'>");
+		this.$el.append(lock);
+
 		return this;
 	}
 });
@@ -157,6 +160,9 @@ var Youtube = Backbone.View.extend({
 
 			this.$el.append($ele);
 		},this));
+
+		var lock = $("<img class='lock' src='/img/eye.svg' data-face='"+this.face+"'>");
+		this.$el.append(lock);
 
 		return this;
 	}
@@ -217,6 +223,9 @@ var Solution = Backbone.View.extend({
 			this.$el.append($ele);
 		},this));
 
+		var lock = $("<img class='lock' src='/img/eye.svg' data-face='"+this.face+"'>");
+		this.$el.append(lock);
+
 		return this;
 	}
 });
@@ -245,6 +254,7 @@ var Cube = Backbone.View.extend({
 		_(this.faces).each(_.bind(function (obj, idx){
 			var ele = obj.render().$el;
 			ele.addClass(this.faceMap[idx]);
+			obj.face = this.faceMap[idx];
 			this.$el.append(ele);
 		},this));
 

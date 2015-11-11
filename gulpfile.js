@@ -7,7 +7,7 @@ var source = require('vinyl-source-stream');
 gulp.task('sass', function (){
     return gulp.src("scss/*.scss")
     .pipe(sass())
-    .pipe(gulp.dest("css"))
+    .pipe(gulp.dest("static/css"))
     .pipe(browserSync.stream());
 });
 
@@ -15,12 +15,12 @@ gulp.task('sass', function (){
 gulp.task('watch', function (){
     browserSync.init({
         server: {
-            baseDir: './'
+            baseDir: 'static'
         }
     });
 
     gulp.watch('scss/*.scss', ['sass']);
-    gulp.watch(['index.html', 'js/main.js','js/facets.js'], browserSync.reload);
+    gulp.watch(['static/index.html', 'static/js/main.js','static/js/facets.js'], browserSync.reload);
 });
 
 gulp.task('default', ['watch']);
