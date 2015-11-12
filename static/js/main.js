@@ -1,4 +1,6 @@
 
+var transEndStr = 'webkitTransitionEnd transitionend msTransitionEnd oTransitionEnd';
+
 var $w = $(window);
 var w = 50000;
 var h = 50000;
@@ -36,6 +38,17 @@ var rotationMap = {
 	'bottom': [90,0,0]
 }
 
+function transEnd(){
+	console.log('transition end')
+	$cube.removeClass('smoothing');
+	keyed = false;
+
+	// reset deltas when realligning cube to grid
+	lDeltaX = 0;
+	lDeltaY = 0;
+	window.scrollTo(w/2, h/2);
+}
+
 function delegate(evt){
 	switch(evt.type){
 		case 'keydown':
@@ -65,15 +78,6 @@ function delegate(evt){
 			//console.log('x',x,'y',y,'z',z);
 
 			$cube.css('transform', 'translateZ(-45vh) rotateZ('+z+'deg) rotateX('+y+'deg) rotateY('+x+'deg)');
-			$cube.get(0).addEventListener('webkitTransitionEnd',function (){
-				$cube.removeClass('smoothing');
-				keyed = false;
-
-				// reset deltas when realligning cube to grid
-				lDeltaX = 0;
-				lDeltaY = 0;
-				window.scrollTo(w/2, h/2);
-			},false);
 		break;
 
 		case 'scroll':
@@ -110,19 +114,17 @@ $(function (){
 	lDeltaX = 0;
 	lDeltaY = 0;
 
-
 	var $shop = $('nav');
-
 	var $container = $('#container');
+
 	var cube = new Cube();
 	$cube = cube.render().$el;
-
+	$cube.on(transEndStr, transEnd);
 	$('#intermediary').append(
 		$cube
 	);
 
 	//$shop.css('left', $container.offset().left-$shop.width()*2);
-
 
 	$('#keyMap').on('click', function (evt){
 		var idx = $(evt.target).index();
@@ -140,36 +142,29 @@ $(function (){
 		y = 90 * Math.round(y / 90);
 
 		$cube.css('transform', 'translateZ(-45vh) rotateZ('+z+'deg) rotateX('+y+'deg) rotateY('+x+'deg)');
-		$cube.get(0).addEventListener('webkitTransitionEnd', function (){
-			$cube.removeClass('smoothing');
-			keyed = false;
-
-			// reset deltas when realligning cube to grid
-			lDeltaX = 0;
-			lDeltaY = 0;
-			window.scrollTo(w/2, h/2);
-		},false);
 	});
 
 	$(document).on('click','img.lock', function (evt){
 		keyed = true;
 		var face = $(evt.target).data('face');
-		$cube.addClass('smoothing')
 
-		y = rotationMap[face][0];
-		x = rotationMap[face][1];
-		z = rotationMap[face][2];
-
+		/*
+			reorient faces to within one revolution
+		*/
+		x = x % 360;
+		y = y % 360;
+		z = z % 360;
 		$cube.css('transform', 'translateZ(-45vh) rotateZ('+z+'deg) rotateX('+y+'deg) rotateY('+x+'deg)');
-		$cube.get(0).addEventListener('webkitTransitionEnd', function (){
-			$cube.removeClass('smoothing ');
-			keyed = false;
 
-			// reset deltas when realligning cube to grid
-			lDeltaX = 0;
-			lDeltaY = 0;
-			window.scrollTo(w/2, h/2);
-		},false);
+		setTimeout(function (){
+			$cube.addClass('smoothing');
+
+			y = rotationMap[face][0];
+			x = rotationMap[face][1];
+			z = rotationMap[face][2];
+
+			$cube.css('transform', 'translateZ(-45vh) rotateZ('+z+'deg) rotateX('+y+'deg) rotateY('+x+'deg)');
+		},50);
 	});
 
 	$(document).on('scroll keydown',delegate);
