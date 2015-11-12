@@ -1,4 +1,4 @@
-
+var transEndStr = 'webkitTransitionEnd transitionend msTransitionEnd oTransitionEnd';
 var URL;
 
 if(window.location.hostname == "localhost")
@@ -33,7 +33,7 @@ var BaseCollection = Backbone.Collection.extend({
 var Gram = Backbone.Model.extend({
 	truncate:20,
 	template: _.template(
-		"<a href='<%= o.get('url') %>'><img src='<%= o.get('photo') %>'></a>"+
+		"<img class='pic' src='<%= o.get('photo') %>'>"+
 		"<h3><a href='<%= o.get('url') %>'>"+
 		"<%= o.user() %>"+
 		//"<%= o.get_caption() %>"+
@@ -80,14 +80,43 @@ var Instagram = Backbone.View.extend({
 	tagName:'li',
 	className:'instagram',
 	initialize: function (opts){
+		_.bindAll(this,'enlarge','close');
+
 		this.items = new Grams(opts)
 		this.items.fetch();
 
+		var v = $("<div id='enlarge'><div class='close'></div></div>");
+		this.$viewport = v;
+
+		this.$viewport.find('.close').on('click', this.close);
+		$(document).on('keyup', this.close);
+
+		this.$viewport.on(transEndStr, _.bind(function (){
+			if(!this.$viewport.hasClass('open'))
+				this.$viewport.css('z-index',-1);
+		},this));
+
 		this.listenTo(this.items,'sync',this.render);
+		this.$el.on('click','img.pic',this.enlarge);
+	},
+
+	close: function (evt){
+		if((evt.type == 'keyup' && evt.keyCode == 27) || evt.type == 'click')
+			this.$viewport.removeClass('open');
+	},
+
+	enlarge: function (evt){
+		this.$viewport.addClass('open').css({
+			zIndex:100,
+			'background-image':'url('+$(evt.target).prop('src')+')'
+		});
 	},
 
 	render: function (){
 		this.$el.empty();
+
+		if($('#viewport'))
+			$('body').append(this.$viewport);
 
 		_(this.items.models).each(_.bind(function (item, idx){
 			var ele = new InstagramView({model:item});

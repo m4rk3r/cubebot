@@ -1,6 +1,4 @@
 
-var transEndStr = 'webkitTransitionEnd transitionend msTransitionEnd oTransitionEnd';
-
 var $w = $(window);
 var w = 50000;
 var h = 50000;
@@ -39,7 +37,6 @@ var rotationMap = {
 }
 
 function transEnd(){
-	console.log('transition end')
 	$cube.removeClass('smoothing');
 	keyed = false;
 
@@ -159,11 +156,15 @@ $(function (){
 		setTimeout(function (){
 			$cube.addClass('smoothing');
 
-			y = rotationMap[face][0];
-			x = rotationMap[face][1];
-			z = rotationMap[face][2];
+			if(y == rotationMap[face][0] && x == rotationMap[face][1] && z == rotationMap[face][2]){
+				transEnd();
+			}else{
+				y = rotationMap[face][0];
+				x = rotationMap[face][1];
+				z = rotationMap[face][2];
 
-			$cube.css('transform', 'translateZ(-45vh) rotateZ('+z+'deg) rotateX('+y+'deg) rotateY('+x+'deg)');
+				$cube.css('transform', 'translateZ(-45vh) rotateZ('+z+'deg) rotateX('+y+'deg) rotateY('+x+'deg)');
+			}
 		},50);
 	});
 

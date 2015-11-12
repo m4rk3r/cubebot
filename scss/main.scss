@@ -14,25 +14,92 @@ html,body {
     //-moz-osx-font-smoothing: grayscale;
 }
 
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+#enlarge {
+    @include transition(opacity .25s ease-in-out, transform .25s ease-in-out);
+
+    position:fixed;
+    top:5vh;
+    left:50%;
+    margin-left:-(90vh/2);
+    width: 90vh;
+    height: 90vh;
+    border:solid 2px black;
+    z-index:-1;
+    background-color:#FFF;
+    background-size:cover;
+    background-repeat:no-repeat;
+    opacity:0;
+
+    &.open {
+        opacity:1;
+
+        .close {
+            -webkit-animation:spin 10s linear 2.5sinfinite;
+            -moz-animation:spin 10s linear 2.5s infinite;
+            animation:spin 10s linear 2.5s infinite;
+        }
+    }
+
+    .close {
+        background-image:url('/img/close.svg');
+        background-size:cover;
+        position:absolute;
+        right:-25px;
+        top:-25px;
+        width:25px;
+        height:25px;
+        z-index:101;
+        cursor:pointer;
+    }
+}
+
 .rotate {
 	position:fixed;
 	top:3%;
 	right:3%;
 	width:35px;
+    height:35px;
 	padding:25px;
     z-index:99;
+    cursor:pointer;
+
+    svg {
+        width:35px;
+        height:35px;
+    }
+
+    &:hover {
+        path {
+            fill:blue;
+        }
+    }
 }
 
-nav {
-	border:solid 2px #000;
-	background-color:rgb(255,242,0);
-	padding: 15px 25px;
-	text-transform:uppercase;
-	position:fixed;
-	font-family:'arial';
-	left:10%;
-	top:2.5%;
-	z-index:999;
+a {
+    nav {
+    	border:solid 2px #000;
+    	background-color:rgb(255,242,0);
+    	padding: 15px 25px;
+    	text-transform:uppercase;
+    	position:fixed;
+    	font-family:'arial';
+    	left:10%;
+    	top:2.5%;
+    	z-index:999;
+
+        &:link {
+            color:black;
+        }
+
+        &:hover {
+            color:blue;
+            border-color:blue;
+        }
+    }
 }
 
 $kw: 75px;
@@ -46,6 +113,7 @@ $kw: 75px;
 	li {
         position:absolute;
         cursor:pointer;
+        padding: 5px;
 
         &:hover {
             color:blue;
@@ -122,6 +190,7 @@ $kw: 75px;
 				.photo {
 					position:absolute;
 					width:300px;
+                    cursor:pointer;
 
 					h3 {
 						font-size:12px;
