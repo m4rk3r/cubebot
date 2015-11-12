@@ -172,21 +172,21 @@ a nav {
       -moz-transform: translateZ(-50vh) rotateX(90deg);
       -ms-transform: translateZ(-50vh) rotateX(90deg);
       transform: translateZ(-50vh) rotateX(90deg); }
-    #container #cube li {
+    #container #cube .face {
       position: absolute;
       width: 100%;
       height: 100%;
       /* geometry definitions */ }
-      #container #cube li.instagram .photo {
+      #container #cube .face.instagram .photo {
         position: absolute;
         width: 300px;
         cursor: pointer; }
-        #container #cube li.instagram .photo h3 {
+        #container #cube .face.instagram .photo h3 {
           font-size: 12px;
           margin-top: 0; }
-          #container #cube li.instagram .photo h3 a:hover {
+          #container #cube .face.instagram .photo h3 a:hover {
             color: black; }
-      #container #cube li.youtube {
+      #container #cube .face.youtube {
         display: -webkit-box;
         display: -moz-box;
         display: -ms-flexbox;
@@ -201,71 +201,86 @@ a nav {
         -webkit-justify-content: center;
         -ms-flex-pack: center;
         justify-content: center; }
-        #container #cube li.youtube .video {
+        #container #cube .face.youtube .video {
           width: 70%; }
-          #container #cube li.youtube .video iframe {
+          #container #cube .face.youtube .video iframe {
             width: 100%; }
-      #container #cube li.solution {
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        -webkit-align-items: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-justify-content: center;
-        -ms-flex-pack: center;
-        justify-content: center; }
-        #container #cube li.solution .solution-item {
-          width: 70%; }
-          #container #cube li.solution .solution-item img {
+      #container #cube .face.solution {
+        /*
+				@include flexbox();
+				@include direction(column);
+				@include align(center);
+				@include justify(center);
+                */ }
+        #container #cube .face.solution #solution-menu {
+          list-style-type: none;
+          padding: 0;
+          margin: 75px 0 10px 75px; }
+          #container #cube .face.solution #solution-menu li {
+            cursor: pointer;
+            font-size: 25px;
+            color: gray; }
+            #container #cube .face.solution #solution-menu li:hover {
+              color: blue; }
+            #container #cube .face.solution #solution-menu li.selected {
+              text-decoration: underline; }
+        #container #cube .face.solution .solution-item {
+          -webkit-transition: opacity 0.3s ease-in-out;
+          -moz-transition: opacity 0.3s ease-in-out;
+          -ms-transition: opacity 0.3s ease-in-out;
+          -o-transition: opacity 0.3s ease-in-out;
+          transition: opacity 0.3s ease-in-out;
+          width: 90%;
+          position: absolute;
+          left: 50%;
+          margin-left: -45%;
+          opacity: 0; }
+          #container #cube .face.solution .solution-item.selected {
+            opacity: 1; }
+          #container #cube .face.solution .solution-item img {
             width: 100%; }
-          #container #cube li.solution .solution-item p {
+          #container #cube .face.solution .solution-item p {
             text-align: center; }
-      #container #cube li .lock {
+      #container #cube .face .lock {
         position: absolute;
         right: 10px;
         top: 10px;
         width: 25px;
         cursor: pointer; }
-      #container #cube li.front {
+      #container #cube .face.front {
         background-color: #23ff03;
         opacity: 0.85;
         -webkit-transform: translateZ(50vh);
         -moz-transform: translateZ(50vh);
         -ms-transform: translateZ(50vh);
         transform: translateZ(50vh); }
-      #container #cube li.right {
+      #container #cube .face.right {
         background-color: #ECFF5B;
         opacity: 1;
         -webkit-transform: translateX(50vh) rotateY(90deg);
         -moz-transform: translateX(50vh) rotateY(90deg);
         -ms-transform: translateX(50vh) rotateY(90deg);
         transform: translateX(50vh) rotateY(90deg); }
-      #container #cube li.back {
+      #container #cube .face.back {
         background-color: rgba(0, 0, 200, 0.75);
         -webkit-transform: translateZ(-50vh) rotateY(180deg);
         -moz-transform: translateZ(-50vh) rotateY(180deg);
         -ms-transform: translateZ(-50vh) rotateY(180deg);
         transform: translateZ(-50vh) rotateY(180deg); }
-      #container #cube li.left {
+      #container #cube .face.left {
         background-color: #E68DEC;
         opacity: 0.95;
         -webkit-transform: translateX(-50vh) rotateY(-90deg);
         -moz-transform: translateX(-50vh) rotateY(-90deg);
         -ms-transform: translateX(-50vh) rotateY(-90deg);
         transform: translateX(-50vh) rotateY(-90deg); }
-      #container #cube li.top {
+      #container #cube .face.top {
         background-color: #E8EC21;
         -webkit-transform: translateY(-50vh) rotateX(90deg);
         -moz-transform: translateY(-50vh) rotateX(90deg);
         -ms-transform: translateY(-50vh) rotateX(90deg);
         transform: translateY(-50vh) rotateX(90deg); }
-      #container #cube li.bottom {
+      #container #cube .face.bottom {
         background-color: #81C9EC;
         -webkit-transform: translateY(50vh) rotateX(-90deg);
         -moz-transform: translateY(50vh) rotateX(-90deg);

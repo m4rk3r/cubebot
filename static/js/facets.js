@@ -203,11 +203,7 @@ var Youtube = Backbone.View.extend({
 */
 var Mix = Backbone.Model.extend({
 	truncate:20,
-	template: _.template(
-		"<h3><%= o.get('title') %> Solution Key</h3>"+
-		"<img src='<%= o.first_media() %>'>"+
-	  	"<p><%= o.get('description') %></p>"
-	),
+	template: _.template($('#solution-stack-template').html()),
 	initialize: function (){
 		_.bindAll(this,'first_media');
 	},
@@ -234,15 +230,40 @@ var MixView = Backbone.View.extend({
 var Solution = Backbone.View.extend({
 	tagName:'li',
 	className:'solution',
+	solutionMenu: _.template($('#solution-menu-template').html()),
 	initialize: function (opts){
+		_.bindAll(this, 'select');
+
 		this.items = new Mixes();
 		this.items.fetch();
+
+		this.$menu = $("<ul id='solution-menu'></ul>");
+		this.$el.on('click','#solution-menu li.solution-option',this.select);
 
 		this.listenTo(this.items,'sync',this.render);
 	},
 
+	select: function (evt){
+		var idx = $(evt.target).index();
+
+		this.$menu.find('.solution-option')
+				  .removeClass('selected')
+				  .eq(idx)
+				  .addClass('selected');
+
+		this.$el.find('div.selected').removeClass('selected');
+		this.$el.find('.solution-item').eq(idx).addClass('selected');
+
+	},
+
 	render: function (){
 		this.$el.empty();
+		if(this.items.models.length < 1 )return this;
+
+		this.$el.append(this.$menu);
+		this.$menu.html(
+			this.solutionMenu({items: this.items.models})
+		);
 
 		_(this.items.models).each(_.bind(function (item, idx){
 			var ele = new MixView({model:item});
@@ -254,6 +275,10 @@ var Solution = Backbone.View.extend({
 
 		var lock = $("<img class='lock' src='/img/eye.svg' data-face='"+this.face+"'>");
 		this.$el.append(lock);
+
+		/* select first solution */
+		this.$menu.find('li.solution-option').first().addClass('selected');
+		this.$el.find('.solution-item').first().addClass('selected');
 
 		return this;
 	}
@@ -267,12 +292,12 @@ var Cube = Backbone.View.extend({
 	tagName:'ul',
 	id:'cube',
 	faces: [
+		new Solution({limit:1}),
 		new Instagram(),
 		new Youtube({limit:1}),
-		new Solution({limit:1}),
 		new Instagram({offset:10}),
 		new Youtube({limit:1,offset:1}),
-		new Solution({limit:1})
+		new Instagram()
 	],
 	faceMap: ['front','right','back','left','top','bottom'],
 	initialize: function (){
@@ -282,7 +307,7 @@ var Cube = Backbone.View.extend({
 		var self = this;
 		_(this.faces).each(_.bind(function (obj, idx){
 			var ele = obj.render().$el;
-			ele.addClass(this.faceMap[idx]);
+			ele.addClass(this.faceMap[idx]+' face');
 			obj.face = this.faceMap[idx];
 			this.$el.append(ele);
 		},this));

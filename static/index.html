@@ -4,6 +4,18 @@
 	<title>cubebot</title>
 	<link rel='stylesheet' type='text/css' href='css/main.css' charset='utf8'>
 
+	<script type='text/template' id='solution-menu-template'>
+		<% _.each(items, function (o){ %>
+			<li class='solution-option'><%= o.get('title') %> Solution Key</li>
+		<% }); %>
+	</script>
+	<script type='text/template' id='solution-stack-template'>
+		<h3><%= o.get('title') %> Solution Key</h3>
+		<img src='<%= o.first_media() %>'>
+	  	<p><%= o.get('description') %></p>
+	</script>
+
+
 	<script type='text/javascript' src='js/jquery-2.1.4.min.js'></script>
 	<script type='text/javascript' src='js/underscore-min.js'></script>
 	<script type='text/javascript' src='js/backbone-min.js'></script>
