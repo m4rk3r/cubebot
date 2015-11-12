@@ -235,11 +235,19 @@ var Solution = Backbone.View.extend({
 		_.bindAll(this, 'select');
 
 		this.items = new Mixes();
-		this.items.fetch();
 
 		this.$menu = $("<ul id='solution-menu'></ul>");
-		this.$el.on('click','#solution-menu li.solution-option',this.select);
 
+		this.$el.on('click','#solution-menu li.solution-option',this.select);
+		this.$el.on(transEndStr, 'div.solution-item', function (){
+			if($(this).hasClass('selected'))
+				$(this).css('z-index',99);
+			else
+				$(this).css('z-index',-1);
+		});
+
+
+		this.items.fetch();
 		this.listenTo(this.items,'sync',this.render);
 	},
 
@@ -278,7 +286,10 @@ var Solution = Backbone.View.extend({
 
 		/* select first solution */
 		this.$menu.find('li.solution-option').first().addClass('selected');
-		this.$el.find('.solution-item').first().addClass('selected');
+		this.$el.find('.solution-item')
+				.first()
+				.addClass('selected')
+				.css('z-index',1);
 
 		return this;
 	}
