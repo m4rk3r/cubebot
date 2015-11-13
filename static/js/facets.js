@@ -408,7 +408,9 @@ var Static = Backbone.View.extend({
 
 		return this;
 	}
-})
+});
+
+
 var Photos = Backbone.View.extend({});
 
 var Cube;
@@ -417,13 +419,12 @@ $(function (){
 		tagName:'ul',
 		id:'cube',
 		faces: [
+			new Instagram({grid:instaGrid[_.random(instaGrid.length-1)]}),
 			new Static(),
-			//new Instagram({grid:instaGrid[_.random(instaGrid.length-1)]}),
 			new Solution({limit:1}),
 			new Youtube({limit:1}),
-			new Instagram({grid:instaGrid[_.random(instaGrid.length-1)]}),
 			new Youtube({limit:1,offset:1}),
-			new Instagram({grid:instaGrid[_.random(instaGrid.length-1)]})
+			new Links()
 		],
 		faceMap: ['front','right','back','left','top','bottom'],
 		initialize: function (){
