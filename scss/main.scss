@@ -95,6 +95,10 @@ a {
             color:black;
         }
 
+        &:visited {
+            color:black;
+        }
+
         &:hover {
             color:blue;
             border-color:blue;
@@ -192,6 +196,10 @@ $kw: 75px;
 					width:300px;
                     cursor:pointer;
 
+                    img {
+                        width:100%;
+                    }
+
 					h3 {
 						font-size:12px;
                         margin-top:0;
@@ -217,6 +225,40 @@ $kw: 75px;
 					}
 				}
 			}
+
+            &.links {
+                @include flexbox();
+                @include direction(column);
+                @include justify(flex-end);
+
+                input {
+                    width:50%;
+                    font-size:25px;
+                    margin-left:100px;
+                }
+
+                #link-list {
+                    margin: 0 0 250px 100px;
+
+                    li {
+                        list-style-type: none;
+                        margin: 25px 0;
+                        font-size:20px;
+
+                        a:link {
+                            color:black;
+                            text-decoration: underline;
+                        }
+                        a:visited {
+                            color:black;
+                        }
+
+                        a:hover {
+                            color:blue;
+                        }
+                    }
+                }
+            }
 
 			&.solution {
                 /*

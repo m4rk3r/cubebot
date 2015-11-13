@@ -83,6 +83,8 @@ a nav {
   z-index: 999; }
   a nav:link {
     color: black; }
+  a nav:visited {
+    color: black; }
   a nav:hover {
     color: blue;
     border-color: blue; }
@@ -181,6 +183,8 @@ a nav {
         position: absolute;
         width: 300px;
         cursor: pointer; }
+        #container #cube .face.instagram .photo img {
+          width: 100%; }
         #container #cube .face.instagram .photo h3 {
           font-size: 12px;
           margin-top: 0; }
@@ -205,6 +209,35 @@ a nav {
           width: 70%; }
           #container #cube .face.youtube .video iframe {
             width: 100%; }
+      #container #cube .face.links {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-justify-content: flex-end;
+        -ms-flex-pack: flex-end;
+        justify-content: flex-end; }
+        #container #cube .face.links input {
+          width: 50%;
+          font-size: 25px;
+          margin-left: 100px; }
+        #container #cube .face.links #link-list {
+          margin: 0 0 250px 100px; }
+          #container #cube .face.links #link-list li {
+            list-style-type: none;
+            margin: 25px 0;
+            font-size: 20px; }
+            #container #cube .face.links #link-list li a:link {
+              color: black;
+              text-decoration: underline; }
+            #container #cube .face.links #link-list li a:visited {
+              color: black; }
+            #container #cube .face.links #link-list li a:hover {
+              color: blue; }
       #container #cube .face.solution {
         /*
 				@include flexbox();

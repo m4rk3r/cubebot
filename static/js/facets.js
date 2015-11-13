@@ -7,6 +7,51 @@ else
 	URL = 'https://morning-thicket-7130.herokuapp.com/api';
 
 
+var instaGrid = [
+	[
+		[0.15,0.09],
+		[0.5, -0.08],
+		[0.69, 0.10],
+		[-0.02, 0.22],
+		[0.46, 0.25],
+		[0.25, 0.47],
+		[-0.02, 0.55],
+		[0.52, 0.56],
+		[0.80, 0.52],
+		[0.17, 0.89]
+	],
+	[
+		[0.74,0.02],
+		[0.18,0.58],
+		[0.58,0.76],
+		[0.04,-0.05],
+		[0.42,0.33],
+		[0.69,0.36],
+		[0.68,0.67],
+		[-0.01,0.37],
+		[0.46,-0.05],
+		[0.63,0.72]
+	],
+	[
+		[0.17,0.03],
+		[0.16,0.36],
+		[-0.05,0.49],
+		[0.15,0.64],
+		[-0.05,0.19],
+		[0.79,0.55],
+		[0.56,0.71],
+		[0.38,0.34],
+		[0.36,0.56],
+		[0.59,0.4],
+		[-0.02,0.68],
+		[0.74,0.41],
+		[0.75,0.18],
+		[0.28,0.79],
+		[0.57,0.08]
+	]
+];
+
+
 var BaseCollection = Backbone.Collection.extend({
 	initialize: function (opts){
 		this.params = opts || {};
@@ -80,13 +125,15 @@ var Instagram = Backbone.View.extend({
 	tagName:'li',
 	className:'instagram',
 	initialize: function (opts){
-		_.bindAll(this,'enlarge','close');
+		_.bindAll(this,'enlarge','close','save');
 
 		this.items = new Grams(opts)
 		this.items.fetch();
 
-		var v = $("<div id='enlarge'><div class='close'></div></div>");
-		this.$viewport = v;
+		this.grid = opts.grid;
+		this.limit = this.grid.length;
+
+		this.$viewport = $('#enlarge');
 
 		this.$viewport.find('.close').on('click', this.close);
 		$(document).on('keyup', this.close);
@@ -112,6 +159,15 @@ var Instagram = Backbone.View.extend({
 		});
 	},
 
+	save: function (){
+		var t = '[';
+		this.$el.find('div.photo').each(function (){
+			t += '['+(parseInt($(this).prop('style')['left'],10)/100)+','+(parseInt($(this).prop('style')['top'],10)/100)+'],\n'
+		});
+		t+=']';
+		console.log(t)
+	},
+
 	render: function (){
 		this.$el.empty();
 
@@ -123,15 +179,24 @@ var Instagram = Backbone.View.extend({
 
 			var $ele = ele.render().$el;
 
+			/*
 			$ele.css({
 				'left': _.random(-5,80)+'%',
 				'top': _.random(-5,80)+'%'
-			})
+			});
+			*/
 
-			$ele.find('img').css('width',_.random(40,90)+'%');
+			$ele.css({
+				left: 100*this.grid[idx][0]+'%',
+				top: 100*this.grid[idx][1]+'%'
+			});
+
+			$ele.css('width',300 * (_.random(40,85)/100)+'px');
 
 			this.$el.append($ele);
 		},this));
+
+		//this.save();
 
 		var lock = $("<img class='lock' src='/img/eye.svg' data-face='"+this.face+"'>");
 		this.$el.append(lock);
@@ -296,33 +361,83 @@ var Solution = Backbone.View.extend({
 });
 
 
-var Links = Backbone.View.extend({});
-var Photos = Backbone.View.extend({});
-
-var Cube = Backbone.View.extend({
-	tagName:'ul',
-	id:'cube',
-	faces: [
-		new Solution({limit:1}),
-		new Instagram(),
-		new Youtube({limit:1}),
-		new Instagram({offset:10}),
-		new Youtube({limit:1,offset:1}),
-		new Instagram()
-	],
-	faceMap: ['front','right','back','left','top','bottom'],
-	initialize: function (){
-
-	},
+var Links = Backbone.View.extend({
+	className:'links',
+	template:_.template(
+		"<input type='text'>"+
+		"<ul id='link-list'>"+
+		"<li><a href='https://www.instagram.com/cubebot/' target='_blank'>Instagram</a></li>"+
+		"<li><a href='http://cubebot.com/ws.asp' target='_blank'>Wholesale</a></li>"+
+		"<li><a href='https://twitter.com/cubebotthatsme' target='_blank'>Twitter</a></li>"+
+		"<li><a href='#' target='_blank'>Collection</a></li>"+
+		"</ul>"
+	),
 	render: function (){
-		var self = this;
-		_(this.faces).each(_.bind(function (obj, idx){
-			var ele = obj.render().$el;
-			ele.addClass(this.faceMap[idx]+' face');
-			obj.face = this.faceMap[idx];
-			this.$el.append(ele);
-		},this));
+		this.$el.html(
+			this.template()
+		);
+
+		var lock = $("<img class='lock' src='/img/eye.svg' data-face='"+this.face+"'>");
+		this.$el.append(lock);
 
 		return this;
 	}
+});
+
+
+var StaticResource = BaseCollection.extend({
+	fragment:'/flex-content/'
+});
+
+var Static = Backbone.View.extend({
+	tagName:'div',
+	className:'static',
+	initialize: function (){
+		this.item = new StaticResource();
+		this.item.fetch();
+
+		this.listenTo(this.item,'sync',this.render);
+	},
+	render: function (){
+		if(this.item.models.length){
+			this.$el.html(this.item.models[0].get('html'))
+		}
+
+		var lock = $("<img class='lock' src='/img/eye.svg' data-face='"+this.face+"'>");
+		this.$el.append(lock);
+
+		return this;
+	}
+})
+var Photos = Backbone.View.extend({});
+
+var Cube;
+$(function (){
+	Cube = Backbone.View.extend({
+		tagName:'ul',
+		id:'cube',
+		faces: [
+			new Static(),
+			//new Instagram({grid:instaGrid[_.random(instaGrid.length-1)]}),
+			new Solution({limit:1}),
+			new Youtube({limit:1}),
+			new Instagram({grid:instaGrid[_.random(instaGrid.length-1)]}),
+			new Youtube({limit:1,offset:1}),
+			new Instagram({grid:instaGrid[_.random(instaGrid.length-1)]})
+		],
+		faceMap: ['front','right','back','left','top','bottom'],
+		initialize: function (){
+		},
+		render: function (){
+			var self = this;
+			_(this.faces).each(_.bind(function (obj, idx){
+				obj.face = this.faceMap[idx];
+				var ele = obj.render().$el;
+				ele.addClass(this.faceMap[idx]+' face');
+				this.$el.append(ele);
+			},this));
+
+			return this;
+		}
+	});
 });

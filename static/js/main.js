@@ -3,6 +3,7 @@ var $w = $(window);
 var w = 50000;
 var h = 50000;
 var $cube;
+var cube;
 
 // scroll delta
 var deltaX = 0;
@@ -114,7 +115,7 @@ $(function (){
 	var $shop = $('nav');
 	var $container = $('#container');
 
-	var cube = new Cube();
+	cube = new Cube();
 	$cube = cube.render().$el;
 	$cube.on(transEndStr, transEnd);
 	$('#intermediary').append(
