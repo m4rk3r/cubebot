@@ -127,10 +127,10 @@ var Instagram = Backbone.View.extend({
 		_.bindAll(this,'enlarge','close','save');
 
 		this.items = new Grams(opts)
-		this.items.fetch();
 
 		this.grid = instaGrid[_.random(instaGrid.length-1)];
 		this.limit = this.grid.length;
+		this.items.fetch();
 
 		this.$viewport = $('#enlarge');
 
@@ -170,9 +170,6 @@ var Instagram = Backbone.View.extend({
 	render: function (){
 		this.$el.empty();
 		this.$el.attr('data-face',this.face);
-
-		if($('#viewport'))
-			$('body').append(this.$viewport);
 
 		_(this.items.models).each(_.bind(function (item, idx){
 			var ele = new InstagramView({model:item});
@@ -424,7 +421,95 @@ var Static = Backbone.View.extend({
 });
 
 
-var Photos = Backbone.View.extend({});
+var Photo = Backbone.Model.extend({
+	truncate:20,
+	template: _.template(
+		"<img class='pic' src='<%= o.get('photo') %>'>"+
+		"<h3><%= o.get('caption') %></h3>"
+	)
+});
+
+var PhotoCollection = BaseCollection.extend({
+	model: Photo,
+	fragment:'/photography/'
+});
+
+var PhotoView = Backbone.View.extend({
+	tagName:'div',
+	className:'photo',
+	render: function (){
+		this.$el.attr('data-face',this.face);
+
+		this.$el.html(this.model.template({o: this.model}));
+
+		return this;
+	}
+});
+
+var Photos = Backbone.View.extend({
+	tagName:'li',
+	className:'photos',
+	initialize: function (opts){
+		_.bindAll(this,'enlarge','close');
+
+		this.items = new PhotoCollection(opts)
+
+		this.grid = instaGrid[_.random(instaGrid.length-1)];
+		this.limit = this.grid.length;
+
+		this.items.fetch();
+
+		this.$viewport = $('#enlarge');
+
+		this.$viewport.find('.close').on('click', this.close);
+		$(document).on('keyup', this.close);
+
+		this.$viewport.on(transEndStr, _.bind(function (){
+			if(!this.$viewport.hasClass('open'))
+				this.$viewport.css('z-index',-1);
+		},this));
+
+		this.listenTo(this.items,'sync',this.render);
+		this.$el.on('click','img.pic',this.enlarge);
+	},
+
+	close: function (evt){
+		if((evt.type == 'keyup' && evt.keyCode == 27) || evt.type == 'click')
+			this.$viewport.removeClass('open');
+	},
+
+	enlarge: function (evt){
+		this.$viewport.addClass('open').css({
+			zIndex:100,
+			'background-image':'url('+$(evt.target).prop('src')+')'
+		});
+	},
+
+	render: function (){
+		this.$el.empty();
+		this.$el.attr('data-face',this.face);
+
+		_(this.items.models).each(_.bind(function (item, idx){
+			var ele = new InstagramView({model:item});
+
+			var $ele = ele.render().$el;
+
+			$ele.css({
+				left: 100*this.grid[idx][0]+'%',
+				top: 100*this.grid[idx][1]+'%'
+			});
+
+			$ele.css('width',300 * (_.random(40,85)/100)+'px');
+
+			this.$el.append($ele);
+		},this));
+
+		var lock = $("<img class='lock' src='/img/eye.svg' data-face='"+this.face+"'>");
+		this.$el.append(lock);
+
+		return this;
+	}
+});
 
 var registry = {
 	'instagram':Instagram,
