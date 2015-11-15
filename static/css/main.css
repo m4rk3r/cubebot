@@ -1,3 +1,4 @@
+/* global style variables */
 /* flexbox specs */
 html, body {
   margin: 0;
@@ -98,7 +99,8 @@ a nav {
   #keyMap li {
     position: absolute;
     cursor: pointer;
-    padding: 5px; }
+    padding: 5px;
+    background-color: #FFF; }
     #keyMap li:hover {
       color: blue; }
   #keyMap li:nth-child(1) {
@@ -150,31 +152,6 @@ a nav {
       -ms-transition: transform 0.66s ease-in-out;
       -o-transition: transform 0.66s ease-in-out;
       transition: transform 0.66s ease-in-out; }
-    #container #cube.right {
-      -webkit-transform: translateZ(-50vh) rotateY(-90deg);
-      -moz-transform: translateZ(-50vh) rotateY(-90deg);
-      -ms-transform: translateZ(-50vh) rotateY(-90deg);
-      transform: translateZ(-50vh) rotateY(-90deg); }
-    #container #cube.left {
-      -webkit-transform: translateZ(-50vh) rotateY(90deg);
-      -moz-transform: translateZ(-50vh) rotateY(90deg);
-      -ms-transform: translateZ(-50vh) rotateY(90deg);
-      transform: translateZ(-50vh) rotateY(90deg); }
-    #container #cube.back {
-      -webkit-transform: translateZ(-50vh) rotateY(180deg);
-      -moz-transform: translateZ(-50vh) rotateY(180deg);
-      -ms-transform: translateZ(-50vh) rotateY(180deg);
-      transform: translateZ(-50vh) rotateY(180deg); }
-    #container #cube.top {
-      -webkit-transform: translateZ(-50vh) rotateX(-90deg);
-      -moz-transform: translateZ(-50vh) rotateX(-90deg);
-      -ms-transform: translateZ(-50vh) rotateX(-90deg);
-      transform: translateZ(-50vh) rotateX(-90deg); }
-    #container #cube.bottom {
-      -webkit-transform: translateZ(-50vh) rotateX(90deg);
-      -moz-transform: translateZ(-50vh) rotateX(90deg);
-      -ms-transform: translateZ(-50vh) rotateX(90deg);
-      transform: translateZ(-50vh) rotateX(90deg); }
     #container #cube .face {
       position: absolute;
       width: 100%;
@@ -199,8 +176,12 @@ a nav {
         #container #cube .face.instagram .photo h3 {
           font-size: 12px;
           margin-top: 0; }
-          #container #cube .face.instagram .photo h3 a:hover {
+          #container #cube .face.instagram .photo h3 a:link {
             color: black; }
+          #container #cube .face.instagram .photo h3 a:visited {
+            color: black; }
+          #container #cube .face.instagram .photo h3 a:hover {
+            color: blue; }
       #container #cube .face.youtube {
         display: -webkit-box;
         display: -moz-box;
@@ -249,42 +230,35 @@ a nav {
               color: black; }
             #container #cube .face.links #link-list li a:hover {
               color: blue; }
-      #container #cube .face.solution {
-        /*
-				@include flexbox();
-				@include direction(column);
-				@include align(center);
-				@include justify(center);
-                */ }
-        #container #cube .face.solution #solution-menu {
-          list-style-type: none;
-          padding: 0;
-          margin: 75px 0 10px 75px; }
-          #container #cube .face.solution #solution-menu li {
-            cursor: pointer;
-            font-size: 25px;
-            color: gray; }
-            #container #cube .face.solution #solution-menu li:hover {
-              color: blue; }
-            #container #cube .face.solution #solution-menu li.selected {
-              text-decoration: underline; }
-        #container #cube .face.solution .solution-item {
-          -webkit-transition: opacity 0.3s ease-in-out;
-          -moz-transition: opacity 0.3s ease-in-out;
-          -ms-transition: opacity 0.3s ease-in-out;
-          -o-transition: opacity 0.3s ease-in-out;
-          transition: opacity 0.3s ease-in-out;
-          width: 90%;
-          position: absolute;
-          left: 50%;
-          margin-left: -45%;
-          opacity: 0; }
-          #container #cube .face.solution .solution-item.selected {
-            opacity: 1; }
-          #container #cube .face.solution .solution-item img {
-            width: 100%; }
-          #container #cube .face.solution .solution-item p {
-            text-align: center; }
+      #container #cube .face.solution #solution-menu {
+        list-style-type: none;
+        padding: 0;
+        margin: 75px 0 10px 75px; }
+        #container #cube .face.solution #solution-menu li {
+          cursor: pointer;
+          font-size: 25px;
+          color: gray; }
+          #container #cube .face.solution #solution-menu li:hover {
+            color: blue; }
+          #container #cube .face.solution #solution-menu li.selected {
+            text-decoration: underline; }
+      #container #cube .face.solution .solution-item {
+        -webkit-transition: opacity 0.3s ease-in-out;
+        -moz-transition: opacity 0.3s ease-in-out;
+        -ms-transition: opacity 0.3s ease-in-out;
+        -o-transition: opacity 0.3s ease-in-out;
+        transition: opacity 0.3s ease-in-out;
+        width: 90%;
+        position: absolute;
+        left: 50%;
+        margin-left: -45%;
+        opacity: 0; }
+        #container #cube .face.solution .solution-item.selected {
+          opacity: 1; }
+        #container #cube .face.solution .solution-item img {
+          width: 100%; }
+        #container #cube .face.solution .solution-item p {
+          text-align: center; }
       #container #cube .face .lock {
         position: absolute;
         right: 10px;

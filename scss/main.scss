@@ -92,16 +92,16 @@ a {
     	z-index:999;
 
         &:link {
-            color:black;
+            color:$link-color;
         }
 
         &:visited {
-            color:black;
+            color:$link-color;
         }
 
         &:hover {
-            color:blue;
-            border-color:blue;
+            color:$hover-color;
+            border-color:$hover-color;
         }
     }
 }
@@ -118,9 +118,10 @@ $kw: 75px;
         position:absolute;
         cursor:pointer;
         padding: 5px;
+        background-color:#FFF;
 
         &:hover {
-            color:blue;
+            color:$hover-color;
         }
     }
 
@@ -169,22 +170,6 @@ $kw: 75px;
 
         @include transform(translateZ(-$w/2));
 
-		&.right {
-			@include transform(translateZ(-$w/2) rotateY(-90deg));
-		}
-		&.left {
-			@include transform(translateZ(-$w/2) rotateY(90deg));
-		}
-		&.back {
-			@include transform(translateZ(-$w/2) rotateY(180deg));
-		}
-		&.top {
-			@include transform(translateZ(-$w/2) rotateX(-90deg));
-		}
-		&.bottom {
-			@include transform(translateZ(-$w/2) rotateX(90deg));
-		}
-
 		.face {
 			position:absolute;
 			width:100%;
@@ -213,8 +198,16 @@ $kw: 75px;
 						font-size:12px;
                         margin-top:0;
 
+                        a:link {
+                            color:$link-color;
+                        }
+
+                        a:visited {
+                            color:$link-color;
+                        }
+
 						a:hover {
-							color:black;
+							color:$hover-color;
 						}
 					}
 				}
@@ -255,27 +248,21 @@ $kw: 75px;
                         font-size:20px;
 
                         a:link {
-                            color:black;
+                            color:$link-color;
                             text-decoration: underline;
                         }
                         a:visited {
-                            color:black;
+                            color:$link-color;
                         }
 
                         a:hover {
-                            color:blue;
+                            color:$hover-color;
                         }
                     }
                 }
             }
 
 			&.solution {
-                /*
-				@include flexbox();
-				@include direction(column);
-				@include align(center);
-				@include justify(center);
-                */
 
                 #solution-menu {
                     list-style-type:none;
@@ -288,7 +275,7 @@ $kw: 75px;
                         color:gray;
 
                         &:hover {
-                            color:blue;
+                            color:$hover-color;
                         }
 
                         &.selected {
