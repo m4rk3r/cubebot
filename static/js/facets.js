@@ -111,9 +111,6 @@ var Grams = BaseCollection.extend({
 var InstagramView = Backbone.View.extend({
 	tagName:'div',
 	className:'photo',
-	initialize: function (){
-
-	},
 	render: function (){
 		this.$el.attr('data-face',this.face);
 
@@ -132,7 +129,7 @@ var Instagram = Backbone.View.extend({
 		this.items = new Grams(opts)
 		this.items.fetch();
 
-		this.grid = opts.grid;
+		this.grid = instaGrid[_.random(instaGrid.length-1)];
 		this.limit = this.grid.length;
 
 		this.$viewport = $('#enlarge');
@@ -241,6 +238,9 @@ var Youtube = Backbone.View.extend({
 	tagName:'li',
 	className:'youtube',
 	initialize: function (opts){
+		opts = opts || {};
+		opts['limit'] = 1;
+
 		this.items = new Tubes(opts);
 		this.items.fetch();
 
@@ -301,6 +301,9 @@ var Solution = Backbone.View.extend({
 	className:'solution',
 	solutionMenu: _.template($('#solution-menu-template').html()),
 	initialize: function (opts){
+		opts = opts || {};
+		opts['limit'] = 1;
+
 		_.bindAll(this, 'select');
 
 		this.items = new Mixes();
@@ -429,11 +432,11 @@ $(function (){
 		tagName:'ul',
 		id:'cube',
 		faces: [
-			new Instagram({grid:instaGrid[_.random(instaGrid.length-1)]}),
+			new Instagram(),
 			new Static(),
-			new Solution({limit:1}),
-			new Youtube({limit:1}),
-			new Youtube({limit:1,offset:1}),
+			new Solution(),
+			new Youtube(),
+			new Youtube(),
 			new Links()
 		],
 		faceMap: ['front','right','back','left','top','bottom'],
