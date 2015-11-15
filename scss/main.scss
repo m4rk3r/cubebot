@@ -153,16 +153,23 @@ $kw: 75px;
   	}
 
 	#cube {
+        @include transition(opacity .35s ease-in-out);
+
 		z-index:99;
 		padding:0;
 		list-style-type:none;
         margin:0;
+        opacity:1;
 
 		width:$w;
 		height:$h;
 
         -webkit-transform-style: preserve-3d;
         -moz-transform-style:preserve-3d;
+
+        &.ready {
+            opacity:1;
+        }
 
         &.smoothing {
             @include transition(transform .66s ease-in-out);

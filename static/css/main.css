@@ -134,10 +134,16 @@ a nav {
     perspective: 3000px;
     perspective-origin: 50% 50%; }
   #container #cube {
+    -webkit-transition: opacity 0.35s ease-in-out;
+    -moz-transition: opacity 0.35s ease-in-out;
+    -ms-transition: opacity 0.35s ease-in-out;
+    -o-transition: opacity 0.35s ease-in-out;
+    transition: opacity 0.35s ease-in-out;
     z-index: 99;
     padding: 0;
     list-style-type: none;
     margin: 0;
+    opacity: 1;
     width: 100vh;
     height: 100vh;
     -webkit-transform-style: preserve-3d;
@@ -146,6 +152,8 @@ a nav {
     -moz-transform: translateZ(-50vh);
     -ms-transform: translateZ(-50vh);
     transform: translateZ(-50vh); }
+    #container #cube.ready {
+      opacity: 1; }
     #container #cube.smoothing {
       -webkit-transition: transform 0.66s ease-in-out;
       -moz-transition: transform 0.66s ease-in-out;

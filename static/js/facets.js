@@ -426,28 +426,55 @@ var Static = Backbone.View.extend({
 
 var Photos = Backbone.View.extend({});
 
+var registry = {
+	'instagram':Instagram,
+	'static':Static,
+	'solution':Solution,
+	'youtube':Youtube,
+	'links':Links,
+	'photos':Photos
+}
+
+var Configuration = BaseCollection.extend({
+	fragment: '/configuration/'
+});
+
 var Cube;
 $(function (){
 	Cube = Backbone.View.extend({
 		tagName:'ul',
 		id:'cube',
-		faces: [
-			new Instagram(),
-			new Static(),
-			new Solution(),
-			new Youtube(),
-			new Youtube(),
-			new Links()
+		faces: [],
+		defaultCube:[
+			'instgram',
+			'static',
+			'youtube',
+			'links',
+			'solution',
+			'youtube'
 		],
 		faceMap: ['front','right','back','left','top','bottom'],
 		initialize: function (){
+			/* get cube configuration from backend, or fallback to default */
+			this.config = new Configuration();
+			this.config.fetch();
+
+			this.listenTo(this.config,'sync',this.render);
 		},
 		render: function (){
+			this.$el.empty();
+			if(!this.config.models.length) return this;
 			var self = this;
-			_(this.faces).each(_.bind(function (obj, idx){
-				obj.face = this.faceMap[idx];
+
+			_(this.config.models[0].attributes).each(_.bind(function (_type,face){
+				var _class = registry[_type]
+
+				obj = new _class();
+				obj.face = face;
+
 				var ele = obj.render().$el;
-				ele.addClass(this.faceMap[idx]+' face');
+				ele.addClass(face+' face');
+
 				this.$el.append(ele);
 			},this));
 
