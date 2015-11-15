@@ -20,6 +20,8 @@ var z = 0;
 // state booleans
 var suppress = false;
 var keyed = false;
+var ua = window.navigator.userAgent;
+var ie = (ua.indexOf('MSIE') + ua.indexOf('Triden')>-2);
 
 var keyMap = {
 	37:'left',
@@ -37,8 +39,21 @@ var rotationMap = {
 	'bottom': [90,0,0]
 }
 
+var ieCubeMap = {
+	'front': 'translateZ(50vh)',
+	'right':'rotateY(90deg) translateZ(50vh)',
+	'back':'rotateY(180deg) translateZ(50vh)',
+	'left':'rotateY(270deg) translateZ(50vh)',
+	'top':'rotateX(90deg) translateZ(50vh)',
+	'bottom':'rotateX(-90deg) translateZ(50vh)'
+}
+
 function transEnd(){
-	$cube.removeClass('smoothing');
+	if(ie)
+		$cube.find('.face').removeClass('smoothing');
+	else
+		$cube.removeClass('smoothing');
+
 	keyed = false;
 
 	// reset deltas when realligning cube to grid
@@ -47,13 +62,31 @@ function transEnd(){
 	window.scrollTo(w/2, h/2);
 }
 
+// xbrowser transforms
+var locales = ['-moz-transform','-webkit-transform','transform'];
+function transform(o, x,y,z){
+	if(ie){
+		o.find('.face').each(function (){
+			var f = $(this).data('face');
+			$(this).css('transform', 'perspective(3000px) rotateZ('+z+'deg) rotateY('+x+'deg) rotateX('+y+'deg) ' + ieCubeMap[f]);
+		});
+	}else{
+		_(locales).each(function (l){
+			o.css(l, 'translateZ(-45vh) rotateZ('+z+'deg) rotateX('+y+'deg) rotateY('+x+'deg)');
+		});
+	}
+}
+
 function delegate(evt){
 	switch(evt.type){
 		case 'keydown':
 		if(typeof keyMap[evt.keyCode] == "undefined") break;
 			keyed = true;
 
-			$cube.addClass('smoothing');
+			if(ie)
+				$cube.find('.face').addClass('smoothing');
+			else
+				$cube.addClass('smoothing');
 
 			switch(keyMap[evt.keyCode]){
 				case 'up':
@@ -75,7 +108,7 @@ function delegate(evt){
 
 			//console.log('x',x,'y',y,'z',z);
 
-			$cube.css('transform', 'translateZ(-45vh) rotateZ('+z+'deg) rotateX('+y+'deg) rotateY('+x+'deg)');
+			transform($cube, x,y,z);
 		break;
 
 		case 'scroll':
@@ -90,7 +123,7 @@ function delegate(evt){
 
 				lDeltaX = _x; lDeltaY = _y;
 
-				$cube.css('transform', 'translateZ(-45vh) rotateZ('+z+'deg) rotateX('+y+'deg) rotateY('+x+'deg)');
+				transform($cube, x,y,z);
 			}else{
 				suppress = false;
 				lDeltaX = 0;
@@ -117,7 +150,12 @@ $(function (){
 
 	cube = new Cube();
 	$cube = cube.render().$el;
-	$cube.on(transEndStr, transEnd);
+
+	if(ie)
+		$cube.find('.face').on(transEndStr, transEnd);
+	else
+		$cube.on(transEndStr, transEnd);
+
 	$('#intermediary').append(
 		$cube
 	);
@@ -132,14 +170,17 @@ $(function (){
 
 	$('.rotate').on('click', function (){
 		keyed = true;
-		$cube.addClass('smoothing');
+		if(ie)
+			$cube.find('.face').addClass('smoothing');
+		else
+			$cube.addClass('smoothing');
 
 		z += 90;
 
 		x = 90 * Math.round(x / 90);
 		y = 90 * Math.round(y / 90);
 
-		$cube.css('transform', 'translateZ(-45vh) rotateZ('+z+'deg) rotateX('+y+'deg) rotateY('+x+'deg)');
+		transform($cube, x,y,z);
 	});
 
 	$(document).on('click','img.lock', function (evt){
@@ -152,10 +193,13 @@ $(function (){
 		x = x % 360;
 		y = y % 360;
 		z = z % 360;
-		$cube.css('transform', 'translateZ(-45vh) rotateZ('+z+'deg) rotateX('+y+'deg) rotateY('+x+'deg)');
+		transform($cube, x,y,z);
 
 		setTimeout(function (){
-			$cube.addClass('smoothing');
+			if(ie)
+				$cube.find('.face').addClass('smoothing');
+			else
+				$cube.addClass('smoothing');
 
 			if(y == rotationMap[face][0] && x == rotationMap[face][1] && z == rotationMap[face][2]){
 				transEnd();
@@ -164,7 +208,7 @@ $(function (){
 				x = rotationMap[face][1];
 				z = rotationMap[face][2];
 
-				$cube.css('transform', 'translateZ(-45vh) rotateZ('+z+'deg) rotateX('+y+'deg) rotateY('+x+'deg)');
+				transform($cube, x,y,z);
 			}
 		},50);
 	});

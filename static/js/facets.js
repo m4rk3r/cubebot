@@ -79,7 +79,7 @@ var Gram = Backbone.Model.extend({
 	truncate:20,
 	template: _.template(
 		"<img class='pic' src='<%= o.get('photo') %>'>"+
-		"<h3><a href='<%= o.get('url') %>'>"+
+		"<h3><a href='<%= o.get('url') %>' target='_blank'>"+
 		"<%= o.user() %>"+
 		//"<%= o.get_caption() %>"+
 		"</a></h3>"
@@ -115,6 +115,8 @@ var InstagramView = Backbone.View.extend({
 
 	},
 	render: function (){
+		this.$el.attr('data-face',this.face);
+
 		this.$el.html(this.model.template({o: this.model}));
 
 		return this;
@@ -170,6 +172,7 @@ var Instagram = Backbone.View.extend({
 
 	render: function (){
 		this.$el.empty();
+		this.$el.attr('data-face',this.face);
 
 		if($('#viewport'))
 			$('body').append(this.$viewport);
@@ -246,6 +249,7 @@ var Youtube = Backbone.View.extend({
 
 	render: function (){
 		this.$el.empty();
+		this.$el.attr('data-face',this.face);
 
 		_(this.items.models).each(_.bind(function (item, idx){
 			var ele = new TubeView({model:item});
@@ -333,6 +337,8 @@ var Solution = Backbone.View.extend({
 		this.$el.empty();
 		if(this.items.models.length < 1 )return this;
 
+		this.$el.attr('data-face',this.face);
+
 		this.$el.append(this.$menu);
 		this.$menu.html(
 			this.solutionMenu({items: this.items.models})
@@ -373,6 +379,8 @@ var Links = Backbone.View.extend({
 		"</ul>"
 	),
 	render: function (){
+		this.$el.attr('data-face',this.face);
+
 		this.$el.html(
 			this.template()
 		);
@@ -399,6 +407,8 @@ var Static = Backbone.View.extend({
 		this.listenTo(this.item,'sync',this.render);
 	},
 	render: function (){
+		this.$el.attr('data-face',this.face);
+
 		if(this.item.models.length){
 			this.$el.html(this.item.models[0].get('html'))
 		}
