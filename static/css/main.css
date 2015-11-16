@@ -175,6 +175,21 @@ a nav {
             -ms-transition: transform 0.66s ease-in-out;
             -o-transition: transform 0.66s ease-in-out;
             transition: transform 0.66s ease-in-out; } }
+      #container #cube .face.photos .photo {
+        position: absolute;
+        width: 300px;
+        cursor: pointer; }
+        #container #cube .face.photos .photo img {
+          width: 100%; }
+        #container #cube .face.photos .photo h3 {
+          font-size: 12px;
+          margin-top: 0; }
+          #container #cube .face.photos .photo h3 a:link {
+            color: black; }
+          #container #cube .face.photos .photo h3 a:visited {
+            color: black; }
+          #container #cube .face.photos .photo h3 a:hover {
+            color: blue; }
       #container #cube .face.instagram .photo {
         position: absolute;
         width: 300px;

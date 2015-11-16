@@ -191,6 +191,35 @@ $kw: 75px;
                 }
             }
 
+            &.photos {
+                .photo {
+                    position:absolute;
+                    width:300px;
+                    cursor:pointer;
+
+                    img {
+                        width:100%;
+                    }
+
+                    h3 {
+                        font-size:12px;
+                        margin-top:0;
+
+                        a:link {
+                            color:$link-color;
+                        }
+
+                        a:visited {
+                            color:$link-color;
+                        }
+
+                        a:hover {
+                            color:$hover-color;
+                        }
+                    }
+                }
+            }
+
 			&.instagram {
 				.photo {
 					position:absolute;
