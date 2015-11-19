@@ -1,11 +1,7 @@
 var transEndStr = 'webkitTransitionEnd transitionend msTransitionEnd oTransitionEnd';
 var URL;
 
-// if(window.location.hostname == "localhost")
-// 	URL = 'http://localhost:8000/api';
-// else
-	URL = 'https://morning-thicket-7130.herokuapp.com/api';
-
+URL = 'https://morning-thicket-7130.herokuapp.com/api';
 
 var BaseCollection = Backbone.Collection.extend({
 	initialize: function (opts){
