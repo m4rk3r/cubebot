@@ -1,8 +1,8 @@
 /* global style variables */
-$w:100vh;
+$w:95vh;
 $h:$w;
 
-$front-face-color:rgba(35,255,3,1);
+$front-face-color:rgba(35,255,3,0.5);
 $right-face-color:#ECFF5B;
 $back-face-color:rgba(0,0,200,0.75);
 $left-face-color:#E68DEC;
@@ -61,37 +61,54 @@ $link-color: black;
     flex-shrink:$val;
 }
 
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.front {
+    background-color:$front-face-color;
+}
+.right {
+    background-color:$right-face-color;
+}
+.back {
+    background-color:$back-face-color;
+}
+.left {
+    background-color:$left-face-color;
+}
+.top {
+    background-color:$top-face-color;
+}
+.bottom {
+    background-color:$bottom-face-color;
+}
+
+
 @mixin faces(){
     &.front {
-        background-color:$front-face-color;
-        opacity:0.85;
         @include transform(translateZ($w/2));
 
     }
     &.right {
-        background-color:$right-face-color;
-        opacity:1;
         @include transform(translateX($w/2) rotateY(90deg));
     }
 
     &.back {
-        background-color:$back-face-color;
         @include transform(translateZ(-$w/2) rotateY(180deg));
     }
 
     &.left {
-        background-color:$left-face-color;
-        opacity: 0.95;
         @include transform(translateX(-$w/2) rotateY(-90deg));
     }
 
     &.top {
-        background-color:$top-face-color;
         @include transform(translateY(-$w/2) rotateX(90deg));
     }
 
     &.bottom {
-        background-color:$bottom-face-color;
         @include transform(translateY($w/2) rotateX(-90deg));
     }
 }

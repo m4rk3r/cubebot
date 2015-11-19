@@ -62,6 +62,39 @@ function transEnd(){
 	window.scrollTo(w/2, h/2);
 }
 
+function orientCube(evt){
+	evt.preventDefault();
+
+	keyed = true;
+	var face = $(evt.target).data('face');
+
+	/*
+		reorient faces to within one revolution
+	*/
+	x = x % 360;
+	y = y % 360;
+	z = z % 360;
+	transform($cube, x,y,z);
+
+	setTimeout(function (){
+		if(ie)
+			$cube.find('.face').addClass('smoothing');
+		else
+			$cube.addClass('smoothing');
+
+		if(y == rotationMap[face][0] && x == rotationMap[face][1] && z == rotationMap[face][2]){
+			transEnd();
+		}else{
+			y = rotationMap[face][0];
+			x = rotationMap[face][1];
+			z = rotationMap[face][2];
+
+			transform($cube, x,y,z);
+		}
+	},50);
+}
+
+
 // xbrowser transforms
 var locales = ['-moz-transform','-webkit-transform','transform'];
 function transform(o, x,y,z){
@@ -160,58 +193,15 @@ $(function (){
 		$cube
 	);
 
-	//$shop.css('left', $container.offset().left-$shop.width()*2);
-
 	$('#keyMap').on('click', function (evt){
 		var idx = $(evt.target).index();
 		var fake = {type:'keydown',keyCode: 37 + idx};
 		delegate(fake);
 	});
 
-	$('.rotate').on('click', function (){
-		keyed = true;
-		if(ie)
-			$cube.find('.face').addClass('smoothing');
-		else
-			$cube.addClass('smoothing');
-
-		z += 90;
-
-		x = 90 * Math.round(x / 90);
-		y = 90 * Math.round(y / 90);
-
-		transform($cube, x,y,z);
-	});
-
-	$(document).on('click','img.lock', function (evt){
-		keyed = true;
-		var face = $(evt.target).data('face');
-
-		/*
-			reorient faces to within one revolution
-		*/
-		x = x % 360;
-		y = y % 360;
-		z = z % 360;
-		transform($cube, x,y,z);
-
-		setTimeout(function (){
-			if(ie)
-				$cube.find('.face').addClass('smoothing');
-			else
-				$cube.addClass('smoothing');
-
-			if(y == rotationMap[face][0] && x == rotationMap[face][1] && z == rotationMap[face][2]){
-				transEnd();
-			}else{
-				y = rotationMap[face][0];
-				x = rotationMap[face][1];
-				z = rotationMap[face][2];
-
-				transform($cube, x,y,z);
-			}
-		},50);
-	});
+	/* face focusing utils */
+	$('.face-nav').on('click',orientCube);
+	$(document).on('click','img.lock',orientCube);
 
 	$(document).on('scroll keydown',delegate);
 });

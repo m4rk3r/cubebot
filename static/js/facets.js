@@ -1,55 +1,10 @@
 var transEndStr = 'webkitTransitionEnd transitionend msTransitionEnd oTransitionEnd';
 var URL;
 
-if(window.location.hostname == "localhost")
-	URL = 'http://localhost:8000/api';
-else
+// if(window.location.hostname == "localhost")
+// 	URL = 'http://localhost:8000/api';
+// else
 	URL = 'https://morning-thicket-7130.herokuapp.com/api';
-
-
-var instaGrid = [
-	[
-		[0.15,0.09],
-		[0.5, -0.08],
-		[0.69, 0.10],
-		[-0.02, 0.22],
-		[0.46, 0.25],
-		[0.25, 0.47],
-		[-0.02, 0.55],
-		[0.52, 0.56],
-		[0.80, 0.52],
-		[0.17, 0.89]
-	],
-	[
-		[0.74,0.02],
-		[0.18,0.58],
-		[0.58,0.76],
-		[0.04,-0.05],
-		[0.42,0.33],
-		[0.69,0.36],
-		[0.68,0.67],
-		[-0.01,0.37],
-		[0.46,-0.05],
-		[0.63,0.72]
-	],
-	[
-		[0.17,0.03],
-		[0.16,0.36],
-		[-0.05,0.49],
-		[0.15,0.64],
-		[-0.05,0.19],
-		[0.79,0.55],
-		[0.56,0.71],
-		[0.38,0.34],
-		[0.36,0.56],
-		[0.59,0.4],
-		[-0.02,0.68],
-		[0.74,0.41],
-		[0.75,0.18],
-		[0.28,0.79],
-		[0.57,0.08]
-	]
-];
 
 
 var BaseCollection = Backbone.Collection.extend({
@@ -78,7 +33,7 @@ var BaseCollection = Backbone.Collection.extend({
 var Gram = Backbone.Model.extend({
 	truncate:20,
 	template: _.template(
-		"<img class='pic' src='<%= o.get('photo') %>'>"+
+		"<img class='pic' src='<%= o.get('photo') %>' data-caption='<%= o.user() %>'>"+
 		"<h3><a href='<%= o.get('url') %>' target='_blank'>"+
 		"<%= o.user() %>"+
 		//"<%= o.get_caption() %>"+
@@ -123,13 +78,11 @@ var InstagramView = Backbone.View.extend({
 var Instagram = Backbone.View.extend({
 	tagName:'li',
 	className:'instagram',
+	limit:9,
 	initialize: function (opts){
-		_.bindAll(this,'enlarge','close','save');
+		_.bindAll(this,'enlarge','close');
 
-		this.items = new Grams(opts)
-
-		this.grid = instaGrid[_.random(instaGrid.length-1)];
-		this.limit = this.grid.length;
+		this.items = new Grams({limit:this.limit});
 		this.items.fetch();
 
 		this.$viewport = $('#enlarge');
@@ -156,46 +109,28 @@ var Instagram = Backbone.View.extend({
 			zIndex:100,
 			'background-image':'url('+$(evt.target).prop('src')+')'
 		});
-	},
 
-	save: function (){
-		var t = '[';
-		this.$el.find('div.photo').each(function (){
-			t += '['+(parseInt($(this).prop('style')['left'],10)/100)+','+(parseInt($(this).prop('style')['top'],10)/100)+'],\n'
-		});
-		t+=']';
-		console.log(t)
+		this.$viewport.find('#caption').html(
+			$(evt.target).data('caption') || ''
+		);
 	},
 
 	render: function (){
 		this.$el.empty();
 		this.$el.attr('data-face',this.face);
 
+		var container = $("<div class='insta-container clearfix'></div>");
+		this.$el.append(container);
+
 		_(this.items.models).each(_.bind(function (item, idx){
 			var ele = new InstagramView({model:item});
 
 			var $ele = ele.render().$el;
 
-			/*
-			$ele.css({
-				'left': _.random(-5,80)+'%',
-				'top': _.random(-5,80)+'%'
-			});
-			*/
-
-			$ele.css({
-				left: 100*this.grid[idx][0]+'%',
-				top: 100*this.grid[idx][1]+'%'
-			});
-
-			$ele.css('width',300 * (_.random(40,85)/100)+'px');
-
-			this.$el.append($ele);
+			container.append($ele);
 		},this));
 
-		//this.save();
-
-		var lock = $("<img class='lock' src='/img/eye.svg' data-face='"+this.face+"'>");
+		var lock = $("<img class='lock' src='/img/rotate.svg' data-face='"+this.face+"'>");
 		this.$el.append(lock);
 
 		return this;
@@ -256,7 +191,7 @@ var Youtube = Backbone.View.extend({
 			this.$el.append($ele);
 		},this));
 
-		var lock = $("<img class='lock' src='/img/eye.svg' data-face='"+this.face+"'>");
+		var lock = $("<img class='lock' src='/img/rotate.svg' data-face='"+this.face+"'>");
 		this.$el.append(lock);
 
 		return this;
@@ -269,18 +204,18 @@ var Youtube = Backbone.View.extend({
 */
 var Mix = Backbone.Model.extend({
 	truncate:20,
-	template: _.template($('#solution-stack-template').html()),
-	initialize: function (){
-		_.bindAll(this,'first_media');
-	},
-	first_media: function(){
-		return this.get('media')[0].photo;
-	}
+	template: _.template($('#solution-template').html())
 });
 
 var Mixes = BaseCollection.extend({
 	model: Mix,
-	fragment:'/solutions/'
+	fragment:'/solutions/',
+	url: function (){
+		return URL + this.fragment + this.params.type;
+	},
+	parse: function (data){
+		return data;
+	}
 });
 
 var MixView = Backbone.View.extend({
@@ -296,101 +231,65 @@ var MixView = Backbone.View.extend({
 var Solution = Backbone.View.extend({
 	tagName:'li',
 	className:'solution',
-	solutionMenu: _.template($('#solution-menu-template').html()),
 	initialize: function (opts){
+		_.bindAll(this, 'advance');
 		opts = opts || {};
-		opts['limit'] = 1;
 
-		_.bindAll(this, 'select');
+		this.item = new Mixes(opts);
 
-		this.items = new Mixes();
+		this.anim = false;
 
-		this.$menu = $("<ul id='solution-menu'></ul>");
+		this.$el.on('click','.solution-slideshow li',this.advance);
 
-		this.$el.on('click','#solution-menu li.solution-option',this.select);
-		this.$el.on(transEndStr, 'div.solution-item', function (){
-			if($(this).hasClass('selected'))
-				$(this).css('z-index',99);
-			else
-				$(this).css('z-index',-1);
-		});
-
-
-		this.items.fetch();
-		this.listenTo(this.items,'sync',this.render);
+		this.item.fetch();
+		this.listenTo(this.item,'sync',this.render);
 	},
 
-	select: function (evt){
+	advance: function (evt){
+		if(this.anim)return;
+		this.anim = true;
+
 		var idx = $(evt.target).index();
+		var images = this.$el.find('.solution-slideshow li');
 
-		this.$menu.find('.solution-option')
-				  .removeClass('selected')
-				  .eq(idx)
-				  .addClass('selected');
+		images.eq(idx).css('z-index',95).addClass('soon-inactive');
+		images.eq( (idx + 1) % images.length)
+			  .css('z-index',99)
+			  .addClass('active');
 
-		this.$el.find('div.selected').removeClass('selected');
-		this.$el.find('.solution-item').eq(idx).addClass('selected');
+		var self = this;
+		setTimeout(function (){
+			self.$el.find('.soon-inactive').each(function (){
+				$(this).removeClass('soon-inactive active')
+					   .css('z-index',-1);
+			});
+			self.anim = false;
+		},350);
 
 	},
 
 	render: function (){
 		this.$el.empty();
-		if(this.items.models.length < 1 )return this;
+		if(this.item.models.length < 1) return this;
 
 		this.$el.attr('data-face',this.face);
 
-		this.$el.append(this.$menu);
-		this.$menu.html(
-			this.solutionMenu({items: this.items.models})
-		);
+		var ele = new MixView({model:this.item.models[0]});
+		var $ele = ele.render().$el;
+		this.$el.append($ele);
 
-		_(this.items.models).each(_.bind(function (item, idx){
-			var ele = new MixView({model:item});
+		this.$el.find('.solution-slideshow li')
+			.first()
+			.addClass('active')
+			.css('z-index',1);
 
-			var $ele = ele.render().$el;
-
-			this.$el.append($ele);
-		},this));
-
-		var lock = $("<img class='lock' src='/img/eye.svg' data-face='"+this.face+"'>");
-		this.$el.append(lock);
-
-		/* select first solution */
-		this.$menu.find('li.solution-option').first().addClass('selected');
-		this.$el.find('.solution-item')
-				.first()
-				.addClass('selected')
-				.css('z-index',1);
-
-		return this;
-	}
-});
-
-
-var Links = Backbone.View.extend({
-	className:'links',
-	template:_.template(
-		"<input type='text'>"+
-		"<ul id='link-list'>"+
-		"<li><a href='https://www.instagram.com/cubebot/' target='_blank'>Instagram</a></li>"+
-		"<li><a href='http://cubebot.com/ws.asp' target='_blank'>Wholesale</a></li>"+
-		"<li><a href='https://twitter.com/cubebotthatsme' target='_blank'>Twitter</a></li>"+
-		"<li><a href='#' target='_blank'>Collection</a></li>"+
-		"</ul>"
-	),
-	render: function (){
-		this.$el.attr('data-face',this.face);
-
-		this.$el.html(
-			this.template()
-		);
-
-		var lock = $("<img class='lock' src='/img/eye.svg' data-face='"+this.face+"'>");
+		var lock = $("<img class='lock' src='/img/rotate.svg' data-face='"+this.face+"'>");
 		this.$el.append(lock);
 
 		return this;
 	}
 });
+
 
 
 var StaticResource = BaseCollection.extend({
@@ -413,7 +312,7 @@ var Static = Backbone.View.extend({
 			this.$el.html(this.item.models[0].get('html'))
 		}
 
-		var lock = $("<img class='lock' src='/img/eye.svg' data-face='"+this.face+"'>");
+		var lock = $("<img class='lock' src='/img/rotate.svg' data-face='"+this.face+"'>");
 		this.$el.append(lock);
 
 		return this;
@@ -424,8 +323,7 @@ var Static = Backbone.View.extend({
 var Photo = Backbone.Model.extend({
 	truncate:20,
 	template: _.template(
-		"<img class='pic' src='<%= o.get('photo') %>'>"+
-		"<h3><%= o.get('caption') %></h3>"
+		"<img class='pic' src='<%= o.get('photo') %>' data-caption='<%= o.get('caption') %>'>"
 	)
 });
 
@@ -449,14 +347,12 @@ var PhotoView = Backbone.View.extend({
 var Photos = Backbone.View.extend({
 	tagName:'li',
 	className:'photos',
+	limit:12,
 	initialize: function (opts){
 		_.bindAll(this,'enlarge','close');
+		opts['limit'] = this.limit;
 
 		this.items = new PhotoCollection(opts)
-
-		this.grid = instaGrid[_.random(instaGrid.length-1)];
-		this.limit = this.grid.length;
-
 		this.items.fetch();
 
 		this.$viewport = $('#enlarge');
@@ -483,28 +379,28 @@ var Photos = Backbone.View.extend({
 			zIndex:100,
 			'background-image':'url('+$(evt.target).prop('src')+')'
 		});
+
+		this.$viewport.find('#caption').html(
+			$(evt.target).data('caption') || ''
+		);
 	},
 
 	render: function (){
 		this.$el.empty();
 		this.$el.attr('data-face',this.face);
 
+		var container = $("<div class='photo-container clearfix'></div>");
+		this.$el.append(container);
+
 		_(this.items.models).each(_.bind(function (item, idx){
 			var ele = new InstagramView({model:item});
 
 			var $ele = ele.render().$el;
 
-			$ele.css({
-				left: 100*this.grid[idx][0]+'%',
-				top: 100*this.grid[idx][1]+'%'
-			});
-
-			$ele.css('width',300 * (_.random(40,85)/100)+'px');
-
-			this.$el.append($ele);
+			container.append($ele);
 		},this));
 
-		var lock = $("<img class='lock' src='/img/eye.svg' data-face='"+this.face+"'>");
+		var lock = $("<img class='lock' src='/img/rotate.svg' data-face='"+this.face+"'>");
 		this.$el.append(lock);
 
 		return this;
@@ -514,10 +410,12 @@ var Photos = Backbone.View.extend({
 var registry = {
 	'instagram':Instagram,
 	'static':Static,
-	'solution':Solution,
 	'youtube':Youtube,
-	'links':Links,
-	'photos':Photos
+	'photos':Photos,
+
+	'cub-sol':Solution,
+	'jul-sol':Solution,
+	'gut-sol':Solution
 }
 
 var Configuration = BaseCollection.extend({
@@ -530,14 +428,6 @@ $(function (){
 		tagName:'ul',
 		id:'cube',
 		faces: [],
-		defaultCube:[
-			'instgram',
-			'static',
-			'youtube',
-			'links',
-			'solution',
-			'youtube'
-		],
 		faceMap: ['front','right','back','left','top','bottom'],
 		initialize: function (){
 			/* get cube configuration from backend, or fallback to default */
@@ -548,13 +438,14 @@ $(function (){
 		},
 		render: function (){
 			this.$el.empty();
+
 			if(!this.config.models.length) return this;
 			var self = this;
 
 			_(this.config.models[0].attributes).each(_.bind(function (_type,face){
 				var _class = registry[_type]
 
-				obj = new _class();
+				obj = new _class({type:_type});
 				obj.face = face;
 
 				var ele = obj.render().$el;

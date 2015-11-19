@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>cubebot</title>
+	<title>Cubebot! by AREAWARE</title>
+	<link rel="shortcut icon" href="//cdn.shopify.com/s/files/1/0168/6168/t/40/assets/favicon.png?7112717985861953644" type="image/png" />
+
 	<link rel='stylesheet' type='text/css' href='css/main.css' charset='utf8'>
 
-	<script type='text/template' id='solution-menu-template'>
-		<% _.each(items, function (o){ %>
-			<li class='solution-option'><%= o.get('title') %> Solution Key</li>
-		<% }); %>
-	</script>
-	<script type='text/template' id='solution-stack-template'>
-		<h3><%= o.get('title') %> Solution Key</h3>
-		<img src='<%= o.first_media() %>'>
-		<a href='<%= o.get("link") %>' target="_blank">link</a>
-	  	<p><%= o.get('description') %></p>
+	<!-- <h3><a href='<%= o.get("link") %>' target="_blank"><%= o.get('title') %> Solution Key</a></h3> -->
+	<script type='text/template' id='solution-template'>
+		<ul class='solution-slideshow'>
+			<% _.each(o.get('media'), function (m){ %>
+				<li style="background-image: url('<%= m.photo %>');">
+				</li>
+			<% }); %>
+		</ul>
 	</script>
 
 
@@ -25,24 +25,22 @@
 	<script type='text/javascript' src="js/main.js"></script>
 </head>
 <body>
-	<a href='http://www.areaware.com/search?q=cubebot' target='_blank'>
 	<nav>
-		shop
+		<a href='http://www.areaware.com/search?q=cubebot' target='_blank' class='yellow'>shop</a>
+		<!-- update with areaware info link -->
+		<a href='http://www.areaware.com' target='_blank' class='yellow'>info</a>
+
+		<hr />
+
+		<a href='#' class='face-nav front' data-face='front'>front</a>
+		<a href='#' class='face-nav right' data-face='right'>right</a>
+		<a href='#' class='face-nav back' data-face='back'>back</a>
+		<a href='#' class='face-nav left' data-face='left'>left</a>
+		<a href='#' class='face-nav top' data-face='top'>top</a>
+		<a href='#' class='face-nav bottom' data-face='bottom'>bottom</a>
 	</nav>
 	</a>
-	<div class='rotate'>
-			<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-		 width="486.805px" height="486.805px" viewBox="0 0 486.805 486.805" style="enable-background:new 0 0 486.805 486.805;"
-		 xml:space="preserve">
-		<g>
-			<path d="M261.397,17.983c-88.909,0-167.372,51.302-203.909,129.073L32.072,94.282L0,109.73l52.783,109.565l109.565-52.786
-				l-15.451-32.066L89.82,161.934c30.833-65.308,96.818-108.353,171.577-108.353c104.668,0,189.818,85.154,189.818,189.821
-				s-85.15,189.824-189.818,189.824c-61.631,0-119.663-30.109-155.228-80.539l-29.096,20.521
-				c42.241,59.87,111.143,95.613,184.324,95.613c124.286,0,225.407-101.122,225.407-225.419S385.684,17.983,261.397,17.983z"/>
-		</g>
-</svg>
 
-	</div>
 	<ul id='keyMap'>
 		<li><</li>
 		<li><</li>
@@ -53,6 +51,12 @@
 		<div id='intermediary'>
 		</div>
 	</div>
-	<div id='enlarge'><div class='close'></div></div>
+	<div id='enlarge'>
+		<div class='close'></div>
+		<div id='caption'></div>
+	</div>
+
+	<!-- TODO: logo placeholder, update with actual logo -->
+	<img src='/img/logo.jpg' id='logo'>
 </body>
 </html>

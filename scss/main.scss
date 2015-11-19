@@ -18,21 +18,33 @@ html,body {
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
+$iw: 612px;
+$ih: 612px;
+
 #enlarge {
     @include transition(opacity .25s ease-in-out, transform .25s ease-in-out);
 
     position:fixed;
-    top:5vh;
+    top:50%;
     left:50%;
-    margin-left:-(90vh/2);
-    width: 90vh;
-    height: 90vh;
+    margin-left:-($iw/2);
+    margin-top:-($ih/2);
+    width: 612px;
+    height: 612px;
     border:solid 2px black;
     z-index:-1;
     background-color:#FFF;
     background-size:cover;
     background-repeat:no-repeat;
     opacity:0;
+
+    #caption {
+        position:absolute;
+        bottom:-50px;
+        border:solid 2px black;
+        padding:4px;
+        background-color:#FFF;
+    }
 
     &.open {
         opacity:1;
@@ -57,39 +69,39 @@ html,body {
     }
 }
 
-.rotate {
-	position:fixed;
-	top:3%;
-	right:3%;
-	width:35px;
-    height:35px;
-	padding:25px;
-    z-index:99;
-    cursor:pointer;
-
-    svg {
-        width:35px;
-        height:35px;
-    }
-
-    &:hover {
-        path {
-            fill:blue;
-        }
-    }
+#logo {
+    position:fixed;
+    left:5px;
+    bottom:5px;
+    width:15vw;
 }
 
-a {
-    nav {
+nav {
+    @include flexbox();
+    @include direction(column);
+
+    left:25px;
+    top:35px;
+    position:fixed;
+    z-index:999;
+
+    hr {
+        margin: 5px 0 10px 0;
+        border-color:blue;
+    }
+
+    a {
     	border:solid 2px #000;
-    	background-color:rgb(255,242,0);
     	padding: 15px 25px;
     	text-transform:uppercase;
-    	position:fixed;
+        text-decoration: none;
     	font-family:'arial';
-    	left:10%;
-    	top:2.5%;
-    	z-index:999;
+        margin-bottom:5px;
+        text-align:center;
+
+        &.yellow {
+            background-color:rgb(255,242,0);
+        }
 
         &:link {
             color:$link-color;
@@ -192,39 +204,36 @@ $kw: 75px;
             }
 
             &.photos {
+                /* 4x3 grid */
+
+                @include flexbox();
+                @include direction(container);
+                @include align(center);
+
                 .photo {
-                    position:absolute;
-                    width:300px;
+                    width:18.75%;
                     cursor:pointer;
+                    float:left;
+                    margin: 2.5% 0 2.5% 5%;
 
                     img {
                         width:100%;
-                    }
-
-                    h3 {
-                        font-size:12px;
-                        margin-top:0;
-
-                        a:link {
-                            color:$link-color;
-                        }
-
-                        a:visited {
-                            color:$link-color;
-                        }
-
-                        a:hover {
-                            color:$hover-color;
-                        }
                     }
                 }
             }
 
 			&.instagram {
+                /* 3x3 grid */
+
+                @include flexbox();
+                @include direction(container);
+                @include align(center);
+
 				.photo {
-					position:absolute;
-					width:300px;
+					width:25%;
                     cursor:pointer;
+                    float:left;
+                    margin-left: 6.25%;
 
                     img {
                         width:100%;
@@ -264,81 +273,37 @@ $kw: 75px;
 				}
 			}
 
-            &.links {
-                @include flexbox();
-                @include direction(column);
-                @include justify(flex-end);
-
-                input {
-                    width:50%;
-                    font-size:25px;
-                    margin-left:100px;
-                }
-
-                #link-list {
-                    margin: 0 0 250px 100px;
-
-                    li {
-                        list-style-type: none;
-                        margin: 25px 0;
-                        font-size:20px;
-
-                        a:link {
-                            color:$link-color;
-                            text-decoration: underline;
-                        }
-                        a:visited {
-                            color:$link-color;
-                        }
-
-                        a:hover {
-                            color:$hover-color;
-                        }
-                    }
-                }
-            }
-
 			&.solution {
 
-                #solution-menu {
-                    list-style-type:none;
-                    padding:0;
-                    margin: 75px 0 10px 75px;
-
-                    li {
-                        cursor:pointer;
-                        font-size:25px;
-                        color:gray;
-
-                        &:hover {
-                            color:$hover-color;
-                        }
-
-                        &.selected {
-                            text-decoration:underline;
-                        }
-                    }
-                }
-
 				.solution-item {
-                    @include transition(opacity .3s ease-in-out);
+                    cursor: e-resize;
 
-					width:90%;
-                    position:absolute;
-                    left:50%;
-                    margin-left:-45%;
-                    opacity:0;
+                    width:95%;
+                    height:95%;
+                    margin-top:2.5%;
+                    margin-left:2.5%;
 
-                    &.selected {
-                        opacity:1;
-                    }
+                    .solution-slideshow {
+                        padding:0;
+                        position:relative;
+                        width:100%;
+                        height:100%;
 
-					img {
-						width:100%;
-					}
+                        li {
+                            @include transition(opacity .3s ease-in-out);
 
-                    p {
-                        text-align:center;
+                            position:absolute;
+                            list-style-type: none;
+                            width:100%;
+                            height:100%;
+                            background-size:cover;
+
+                            opacity:0;
+
+                            &.active {
+                                opacity:1;
+                            }
+                        }
                     }
 				}
 			}
@@ -349,6 +314,7 @@ $kw: 75px;
                 top:10px;
                 width:25px;
                 cursor:pointer;
+                z-index:100;
             }
 
 			/* geometry definitions */

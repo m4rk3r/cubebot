@@ -1,2 +1,24 @@
 /* global style variables */
 /* flexbox specs */
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.front {
+  background-color: rgba(35, 255, 3, 0.5); }
+
+.right {
+  background-color: #ECFF5B; }
+
+.back {
+  background-color: rgba(0, 0, 200, 0.75); }
+
+.left {
+  background-color: #E68DEC; }
+
+.top {
+  background-color: #E8EC21; }
+
+.bottom {
+  background-color: #81C9EC; }
