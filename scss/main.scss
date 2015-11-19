@@ -204,17 +204,20 @@ $kw: 75px;
             }
 
             &.photos {
-                /* 4x3 grid */
+                /* 3x4 grid */
 
                 @include flexbox();
                 @include direction(container);
                 @include align(center);
 
+                $pw: 65%;
+                $cols: 3;
                 .photo {
-                    width:18.75%;
+                    width:($pw/$cols);
                     cursor:pointer;
                     float:left;
-                    margin: 2.5% 0 2.5% 5%;
+                    $l: ((100 - $pw)/($cols+1));
+                    margin: $l/8 0 $l/8 $l;
 
                     img {
                         width:100%;

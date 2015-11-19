@@ -213,7 +213,7 @@ nav {
             -o-transition: transform 0.66s ease-in-out;
             transition: transform 0.66s ease-in-out; } }
       #container #cube .face.photos {
-        /* 4x3 grid */
+        /* 3x4 grid */
         display: -webkit-box;
         display: -moz-box;
         display: -ms-flexbox;
@@ -226,10 +226,10 @@ nav {
         -ms-flex-align: center;
         align-items: center; }
         #container #cube .face.photos .photo {
-          width: 18.75%;
+          width: 21.66667%;
           cursor: pointer;
           float: left;
-          margin: 2.5% 0 2.5% 5%; }
+          margin: 1.09375% 0 1.09375% 8.75%; }
           #container #cube .face.photos .photo img {
             width: 100%; }
       #container #cube .face.instagram {
