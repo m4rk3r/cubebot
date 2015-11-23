@@ -44,6 +44,16 @@ $ih: 612px;
         border:solid 2px black;
         padding:4px;
         background-color:#FFF;
+
+        a:link {
+            color:black;
+        }
+        a:visited{
+            color:black;
+        }
+        a:hover {
+            color:blue;
+        }
     }
 
     &.open {
@@ -98,6 +108,7 @@ nav {
     	font-family:'arial';
         margin-bottom:5px;
         text-align:center;
+        max-width:100px;
 
         &.yellow {
             background-color:rgb(255,242,0);
@@ -232,11 +243,13 @@ $kw: 75px;
                 @include direction(container);
                 @include align(center);
 
+                $pw: 75%;
+                $cols: 3;
 				.photo {
-					width:25%;
+					width:$pw/$cols;
                     cursor:pointer;
                     float:left;
-                    margin-left: 6.25%;
+                    margin-left: (100-$pw)/($cols+1);
 
                     img {
                         width:100%;

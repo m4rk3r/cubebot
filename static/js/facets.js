@@ -29,7 +29,7 @@ var BaseCollection = Backbone.Collection.extend({
 var Gram = Backbone.Model.extend({
 	truncate:20,
 	template: _.template(
-		"<img class='pic' src='<%= o.get('photo') %>' data-caption='<%= o.user() %>'>"+
+		"<img class='pic' src='<%= o.get('photo') %>' data-caption='<a href=\"<%= o.get(\"url\") %>\" target=\"_blank\"><%= o.user() %>'></a>"+
 		"<h3><a href='<%= o.get('url') %>' target='_blank'>"+
 		"<%= o.user() %>"+
 		//"<%= o.get_caption() %>"+
@@ -319,8 +319,18 @@ var Static = Backbone.View.extend({
 var Photo = Backbone.Model.extend({
 	truncate:20,
 	template: _.template(
-		"<img class='pic' src='<%= o.get('photo') %>' data-caption='<%= o.get('caption') %>'>"
-	)
+		"<img class='pic' src='<%= o.get('photo') %>' data-caption='<%= o.get_caption() %>'>"
+	),
+	initialize: function (opts){
+		_.bindAll(this,'get_caption');
+	},
+	get_caption: function() {
+		var safe_caption = _.escape(this.get('caption'));
+		if(this.get('link'))
+			return "<a href=\""+this.get('link')+"\" target=\"_blank\">"+safe_caption+"</a>";
+		else
+			return safe_caption;
+	}
 });
 
 var PhotoCollection = BaseCollection.extend({
@@ -412,6 +422,17 @@ var registry = {
 	'cub-sol':Solution,
 	'jul-sol':Solution,
 	'gut-sol':Solution
+};
+
+var labels = {
+	'instagram':'Instagram',
+	'static':'Additional Info',
+	'youtube':'Youtube',
+	'photos':'Cubebot Faces',
+
+	'cub-sol':'Cubebot Solution',
+	'jul-sol':'Julien Solution',
+	'gut-sol':'Gutherie Solution',
 }
 
 var Configuration = BaseCollection.extend({
@@ -424,11 +445,14 @@ $(function (){
 		tagName:'ul',
 		id:'cube',
 		faces: [],
-		faceMap: ['front','right','back','left','top','bottom'],
+		faceMap: ['front','back','left','right','top','bottom'],
+		navTemplate:_.template("<a href='#' class='face-nav <%= face %>' data-face='<%= face %>'><%= label %></a>"),
 		initialize: function (){
 			/* get cube configuration from backend, or fallback to default */
 			this.config = new Configuration();
 			this.config.fetch();
+
+			this.$nav = $('nav');
 
 			this.listenTo(this.config,'sync',this.render);
 		},
@@ -448,6 +472,10 @@ $(function (){
 				ele.addClass(face+' face');
 
 				this.$el.append(ele);
+
+				this.$nav.append(
+					this.navTemplate({face:face,label:labels[_type]})
+				);
 			},this));
 
 			return this;

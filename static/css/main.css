@@ -70,6 +70,12 @@ html, body {
     border: solid 2px black;
     padding: 4px;
     background-color: #FFF; }
+    #enlarge #caption a:link {
+      color: black; }
+    #enlarge #caption a:visited {
+      color: black; }
+    #enlarge #caption a:hover {
+      color: blue; }
   #enlarge.open {
     opacity: 1; }
     #enlarge.open .close {
@@ -116,7 +122,8 @@ nav {
     text-decoration: none;
     font-family: 'arial';
     margin-bottom: 5px;
-    text-align: center; }
+    text-align: center;
+    max-width: 100px; }
     nav a.yellow {
       background-color: #fff200; }
     nav a:link {

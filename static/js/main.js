@@ -200,8 +200,7 @@ $(function (){
 	});
 
 	/* face focusing utils */
-	$('.face-nav').on('click',orientCube);
-	$(document).on('click','img.lock',orientCube);
-
-	$(document).on('scroll keydown',delegate);
+	$(document).on('click','img.lock',orientCube)
+			   .on('click','.face-nav',orientCube)
+			   .on('scroll keydown',delegate);
 });
