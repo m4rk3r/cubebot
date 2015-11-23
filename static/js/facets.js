@@ -444,11 +444,9 @@ $(function (){
 	Cube = Backbone.View.extend({
 		tagName:'ul',
 		id:'cube',
-		faces: [],
-		faceMap: ['front','back','left','right','top','bottom'],
 		navTemplate:_.template("<a href='#' class='face-nav <%= face %>' data-face='<%= face %>'><%= label %></a>"),
 		initialize: function (){
-			/* get cube configuration from backend, or fallback to default */
+			/* get cube configuration from backend */
 			this.config = new Configuration();
 			this.config.fetch();
 
