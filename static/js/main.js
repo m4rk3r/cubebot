@@ -23,6 +23,7 @@ var keyed = false;
 var ua = window.navigator.userAgent;
 var ie = (ua.indexOf('MSIE') + ua.indexOf('Triden')>-2);
 var note = true;
+var initial = true;
 
 var keyMap = {
 	37:'left',
@@ -114,7 +115,7 @@ function transform(o, x,y,z){
 }
 
 function delegate(evt){
-	if(note && !suppress) $('#note').addClass('hidden');
+	if(note && !initial) $('#note').addClass('hidden');
 
 	switch(evt.type){
 		case 'keydown':
@@ -186,10 +187,12 @@ $.getJSON(URL+'/photography/',function (data){
 			 .append("<meta name='og:image' content="+face+">");
 })
 
-// <meta name="twitter:image" content="">
-
 $(function (){
-	suppress=true;
+	/* supress intial centering operation */
+	setTimeout(function (){
+		initial=false;
+	},200);
+
 	window.scrollTo(w/2, h/2);
 	lDeltaX = 0;
 	lDeltaY = 0;

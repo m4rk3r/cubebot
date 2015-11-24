@@ -183,7 +183,7 @@ $kw: 75px;
 		@include transform(rotateZ(180deg));
 	}
 	li:nth-child(4) {
-		@include transform(translateX(-$kw/2-2px) translateY(-2px) rotateZ(-90deg));
+		@include transform(translateX((-$kw/2)+1px) translateY(-2px) rotateZ(-90deg));
 	}
 }
 
