@@ -30,7 +30,8 @@ html, body {
   width: 50000px;
   height: 50000px;
   background-image: url(/img/dot.svg);
-  background-size: 10px 10px; }
+  background-size: 10px 10px;
+  font-family: Arial; }
 
 @-moz-keyframes spin {
   100% {
@@ -66,10 +67,12 @@ html, body {
   opacity: 0; }
   #enlarge #caption {
     position: absolute;
-    bottom: -50px;
+    top: 632px;
     border: solid 2px black;
     padding: 4px;
     background-color: #FFF; }
+    #enlarge #caption a {
+      text-decoration: none; }
     #enlarge #caption a:link {
       color: black; }
     #enlarge #caption a:visited {
@@ -133,6 +136,25 @@ nav {
     nav a:hover {
       color: blue;
       border-color: blue; }
+
+#note {
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -ms-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+  position: fixed;
+  right: 1%;
+  bottom: 10%;
+  padding: 10px;
+  text-align: center;
+  background-color: #FFF;
+  width: 100px;
+  border: dashed blue;
+  border-spacing: 5px;
+  opacity: 0.8; }
+  #note.hidden {
+    opacity: 0; }
 
 #keyMap {
   position: fixed;
@@ -262,6 +284,8 @@ nav {
           #container #cube .face.instagram .photo h3 {
             font-size: 12px;
             margin-top: 0; }
+            #container #cube .face.instagram .photo h3 a {
+              text-decoration: none; }
             #container #cube .face.instagram .photo h3 a:link {
               color: black; }
             #container #cube .face.instagram .photo h3 a:visited {

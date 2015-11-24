@@ -22,6 +22,7 @@ var suppress = false;
 var keyed = false;
 var ua = window.navigator.userAgent;
 var ie = (ua.indexOf('MSIE') + ua.indexOf('Triden')>-2);
+var note = true;
 
 var keyMap = {
 	37:'left',
@@ -64,6 +65,8 @@ function transEnd(){
 
 function orientCube(evt){
 	evt.preventDefault();
+
+	if(note) $('#note').addClass('hidden');
 
 	keyed = true;
 	var face = $(evt.target).data('face');
@@ -111,6 +114,8 @@ function transform(o, x,y,z){
 }
 
 function delegate(evt){
+	if(note && !suppress) $('#note').addClass('hidden');
+
 	switch(evt.type){
 		case 'keydown':
 		if(typeof keyMap[evt.keyCode] == "undefined") break;
@@ -173,7 +178,18 @@ function delegate(evt){
 }
 
 
+/* get a random face for og & twitter image */
+$.getJSON(URL+'/photography/',function (data){
+	var faces = _.pluck(data.results,'photo');
+	var face = faces[_.random(faces.length-1)];
+	$('head').append("<meta name='twitter:image' content="+face+">")
+			 .append("<meta name='og:image' content="+face+">");
+})
+
+// <meta name="twitter:image" content="">
+
 $(function (){
+	suppress=true;
 	window.scrollTo(w/2, h/2);
 	lDeltaX = 0;
 	lDeltaY = 0;

@@ -4,14 +4,28 @@
 	<title>Cubebot! by AREAWARE</title>
 	<link rel="shortcut icon" href="//cdn.shopify.com/s/files/1/0168/6168/t/40/assets/favicon.png?7112717985861953644" type="image/png" />
 
+	<meta name="description" content="Cubebot is a wooden toy robot inspired by Japanese Shinto Kumi-ki puzzles. Made from wood and elastic, Cubebot can be positioned to hold dozens of poses. When it's time to rest, Cubebot folds back into a perfect cube. A classic toy for all ages that will endure generations of play." />
+
+	<!-- Twitter Card data -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@Areaware">
+	<meta name="twitter:title" content="Cubebot! by AREAWARE">
+	<meta name="twitter:description" content="Cubebot is a wooden toy robot inspired by Japanese Shinto Kumi-ki puzzles. Made from wood and elastic, Cubebot can be positioned to hold dozens of poses. When it's time to rest, Cubebot folds back into a perfect cube. A classic toy for all ages that will endure generations of play.">
+
+	<!-- Open Graph data -->
+	<meta property="og:title" content="Cubebot! by AREAWARE" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="http://cubebot.com/" />
+	<meta property="og:description" content="Cubebot is a wooden toy robot inspired by Japanese Shinto Kumi-ki puzzles. Made from wood and elastic, Cubebot can be positioned to hold dozens of poses. When it's time to rest, Cubebot folds back into a perfect cube. A classic toy for all ages that will endure generations of play." />
+	<meta property="og:site_name" content="Cubebot! by AREAWARE" />
+
 	<link rel='stylesheet' type='text/css' href='css/main.css' charset='utf8'>
 
 	<!-- <h3><a href='<%= o.get("link") %>' target="_blank"><%= o.get('title') %> Solution Key</a></h3> -->
 	<script type='text/template' id='solution-template'>
 		<ul class='solution-slideshow'>
 			<% _.each(o.get('media'), function (m){ %>
-				<li style="background-image: url('<%= m.photo %>');">
-				</li>
+				<li style="background-image: url('<%= m.photo %>');" title='Click to advance'></li>
 			<% }); %>
 		</ul>
 	</script>
@@ -34,6 +48,7 @@
 	</nav>
 	</a>
 
+	<div id='note'>To navigate:<BR> scroll, use arrow keys or the navigation below</div>
 	<ul id='keyMap'>
 		<li><</li>
 		<li><</li>

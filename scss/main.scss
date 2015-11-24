@@ -10,6 +10,8 @@ html,body {
     background-image:url(/img/dot.svg);
     background-size: 10px 10px;
 
+    font-family:Arial;
+
     //-webkit-font-smoothing: antialiased;
     //-moz-osx-font-smoothing: grayscale;
 }
@@ -40,10 +42,14 @@ $ih: 612px;
 
     #caption {
         position:absolute;
-        bottom:-50px;
+        top:632px;
         border:solid 2px black;
         padding:4px;
         background-color:#FFF;
+
+        a {
+            text-decoration:none;
+        }
 
         a:link {
             color:black;
@@ -126,6 +132,25 @@ nav {
             color:$hover-color;
             border-color:$hover-color;
         }
+    }
+}
+
+#note {
+    @include transition(opacity .3s ease-in-out);
+
+    position:fixed;
+    right:1%;
+    bottom:10%;
+    padding: 10px;
+    text-align:center;
+    background-color:#FFF;
+    width:100px;
+    border:dashed blue;
+    border-spacing: 5px;
+    opacity:0.8;
+
+    &.hidden {
+        opacity:0;
     }
 }
 
@@ -258,6 +283,10 @@ $kw: 75px;
 					h3 {
 						font-size:12px;
                         margin-top:0;
+
+                        a {
+                            text-decoration: none;
+                        }
 
                         a:link {
                             color:$link-color;
