@@ -1,4 +1,5 @@
 /* global style variables */
+/* TODO: colors defined here */
 /* flexbox specs */
 .clearfix:after {
   content: "";
@@ -373,3 +374,121 @@ nav {
         -moz-transform: translateY(47.5vh) rotateX(-90deg);
         -ms-transform: translateY(47.5vh) rotateX(-90deg);
         transform: translateY(47.5vh) rotateX(-90deg); }
+
+@media screen and (max-width: 480px) {
+  nav {
+    display: block;
+    left: 5vw;
+    top: 10px;
+    width: 95vw; }
+    nav hr {
+      height: 30px;
+      width: 0px;
+      float: left;
+      margin-left: 10px; }
+    nav a {
+      font-size: 12px;
+      padding: 10px 15px;
+      margin-left: 10px;
+      margin-bottom: 10px;
+      max-width: 100%;
+      float: left; }
+  #enlarge {
+    left: 50vw;
+    top: 65vh;
+    width: 306px;
+    height: 306px;
+    margin-left: -153px;
+    margin-top: -153px; }
+    #enlarge .close {
+      width: 50px;
+      height: 50px;
+      right: -15px;
+      top: -50px; }
+    #enlarge #caption {
+      font-size: 12px;
+      top: 316px; }
+  #keyMap {
+    right: 10%;
+    bottom: 5%; }
+    #keyMap li {
+      padding: 15px;
+      font-size: 50px; }
+    #keyMap li:nth-child(1) {
+      -webkit-transform: translateX(-175px) translateY(-2px);
+      -moz-transform: translateX(-175px) translateY(-2px);
+      -ms-transform: translateX(-175px) translateY(-2px);
+      transform: translateX(-175px) translateY(-2px); }
+    #keyMap li:nth-child(2) {
+      -webkit-transform: translateX(-87.5px) translateY(-70px) rotateZ(90deg);
+      -moz-transform: translateX(-87.5px) translateY(-70px) rotateZ(90deg);
+      -ms-transform: translateX(-87.5px) translateY(-70px) rotateZ(90deg);
+      transform: translateX(-87.5px) translateY(-70px) rotateZ(90deg); }
+    #keyMap li:nth-child(3) {
+      -webkit-transform: rotateZ(180deg);
+      -moz-transform: rotateZ(180deg);
+      -ms-transform: rotateZ(180deg);
+      transform: rotateZ(180deg); }
+    #keyMap li:nth-child(4) {
+      -webkit-transform: translateX(-86.5px) translateY(-2px) rotateZ(-90deg);
+      -moz-transform: translateX(-86.5px) translateY(-2px) rotateZ(-90deg);
+      -ms-transform: translateX(-86.5px) translateY(-2px) rotateZ(-90deg);
+      transform: translateX(-86.5px) translateY(-2px) rotateZ(-90deg); }
+  #container {
+    left: 50vw;
+    top: 65vh;
+    margin-left: -45vw;
+    margin-top: -45vw; }
+    #container #cube {
+      width: 90vw;
+      height: 90vw; }
+      #container #cube .face {
+        /* geometry definitions */ }
+        #container #cube .face.front {
+          -webkit-transform: translateZ(45vw);
+          -moz-transform: translateZ(45vw);
+          -ms-transform: translateZ(45vw);
+          transform: translateZ(45vw); }
+        #container #cube .face.right {
+          -webkit-transform: translateX(45vw) rotateY(90deg);
+          -moz-transform: translateX(45vw) rotateY(90deg);
+          -ms-transform: translateX(45vw) rotateY(90deg);
+          transform: translateX(45vw) rotateY(90deg); }
+        #container #cube .face.back {
+          -webkit-transform: translateZ(-45vw) rotateY(180deg);
+          -moz-transform: translateZ(-45vw) rotateY(180deg);
+          -ms-transform: translateZ(-45vw) rotateY(180deg);
+          transform: translateZ(-45vw) rotateY(180deg); }
+        #container #cube .face.left {
+          -webkit-transform: translateX(-45vw) rotateY(-90deg);
+          -moz-transform: translateX(-45vw) rotateY(-90deg);
+          -ms-transform: translateX(-45vw) rotateY(-90deg);
+          transform: translateX(-45vw) rotateY(-90deg); }
+        #container #cube .face.top {
+          -webkit-transform: translateY(-45vw) rotateX(90deg);
+          -moz-transform: translateY(-45vw) rotateX(90deg);
+          -ms-transform: translateY(-45vw) rotateX(90deg);
+          transform: translateY(-45vw) rotateX(90deg); }
+        #container #cube .face.bottom {
+          -webkit-transform: translateY(45vw) rotateX(-90deg);
+          -moz-transform: translateY(45vw) rotateX(-90deg);
+          -ms-transform: translateY(45vw) rotateX(-90deg);
+          transform: translateY(45vw) rotateX(-90deg); }
+        #container #cube .face.instagram .photo {
+          margin-top: 5px; }
+          #container #cube .face.instagram .photo h3 {
+            display: none; }
+        #container #cube .face .lock {
+          position: absolute;
+          right: 3px;
+          top: 3px;
+          width: 35px;
+          cursor: pointer;
+          z-index: 100; } }
+
+@media screen and (max-width: 320px) {
+  nav hr {
+    height: 15px; }
+  nav a {
+    font-size: 10px;
+    padding: 7px 12px; } }

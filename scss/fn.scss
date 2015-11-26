@@ -2,6 +2,7 @@
 $w:95vh;
 $h:$w;
 
+/* TODO: colors defined here */
 $front-face-color:rgba(35,255,3,0.5);
 $right-face-color:#ECFF5B;
 $back-face-color:rgba(0,0,200,0.75);
@@ -87,10 +88,9 @@ $link-color: black;
 }
 
 
-@mixin faces(){
+@mixin faces($w){
     &.front {
         @include transform(translateZ($w/2));
-
     }
     &.right {
         @include transform(translateX($w/2) rotateY(90deg));
