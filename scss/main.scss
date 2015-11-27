@@ -413,28 +413,12 @@ $kw: 75px;
         }
     }
 
-    $kw: 175px;
+    #note {
+        display:none;
+    }
+
     #keyMap {
-        right:10%;
-        bottom:5%;
-
-        li {
-            padding: 15px;
-            font-size:50px;
-        }
-
-        li:nth-child(1) {
-            @include transform(translateX(-$kw) translateY(-2px));
-        }
-        li:nth-child(2) {
-            @include transform(translateX(-$kw/2) translateY(-$kw*0.4) rotateZ(90deg));
-        }
-        li:nth-child(3) {
-            @include transform(rotateZ(180deg));
-        }
-        li:nth-child(4) {
-            @include transform(translateX((-$kw/2)+1px) translateY(-2px) rotateZ(-90deg));
-        }
+        display:none;
     }
 
 

@@ -408,32 +408,10 @@ nav {
     #enlarge #caption {
       font-size: 12px;
       top: 316px; }
+  #note {
+    display: none; }
   #keyMap {
-    right: 10%;
-    bottom: 5%; }
-    #keyMap li {
-      padding: 15px;
-      font-size: 50px; }
-    #keyMap li:nth-child(1) {
-      -webkit-transform: translateX(-175px) translateY(-2px);
-      -moz-transform: translateX(-175px) translateY(-2px);
-      -ms-transform: translateX(-175px) translateY(-2px);
-      transform: translateX(-175px) translateY(-2px); }
-    #keyMap li:nth-child(2) {
-      -webkit-transform: translateX(-87.5px) translateY(-70px) rotateZ(90deg);
-      -moz-transform: translateX(-87.5px) translateY(-70px) rotateZ(90deg);
-      -ms-transform: translateX(-87.5px) translateY(-70px) rotateZ(90deg);
-      transform: translateX(-87.5px) translateY(-70px) rotateZ(90deg); }
-    #keyMap li:nth-child(3) {
-      -webkit-transform: rotateZ(180deg);
-      -moz-transform: rotateZ(180deg);
-      -ms-transform: rotateZ(180deg);
-      transform: rotateZ(180deg); }
-    #keyMap li:nth-child(4) {
-      -webkit-transform: translateX(-86.5px) translateY(-2px) rotateZ(-90deg);
-      -moz-transform: translateX(-86.5px) translateY(-2px) rotateZ(-90deg);
-      -ms-transform: translateX(-86.5px) translateY(-2px) rotateZ(-90deg);
-      transform: translateX(-86.5px) translateY(-2px) rotateZ(-90deg); }
+    display: none; }
   #container {
     left: 50vw;
     top: 65vh;
