@@ -98,6 +98,10 @@ function orientCube(evt){
 	},50);
 }
 
+function isMobile(){
+	return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
 
 // xbrowser transforms
 var locales = ['-moz-transform','-webkit-transform','transform'];
@@ -218,8 +222,12 @@ $(function (){
 		delegate(fake);
 	});
 
-	/* face focusing utils */
-	$(document).on('click','img.lock',orientCube)
-			   .on('click','.face-nav',orientCube)
-			   .on('scroll keydown',delegate);
+	if(!isMobile()){
+		/* face focusing utils */
+		$(document).on('click','img.lock',orientCube)
+				   .on('click','.face-nav',orientCube)
+				   .on('scroll keydown',delegate);
+	}else{
+		$(document).on('click','.face-nav',orientCube);
+	}
 });

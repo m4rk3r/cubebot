@@ -2,8 +2,6 @@
 
 html,body {
 	margin:0;
-	width:100%;
-	height:100%;
 
     width:50000px;
     height:50000px;
@@ -99,7 +97,7 @@ nav {
     left:25px;
     top:35px;
     position:fixed;
-    z-index:999;
+    z-index:99;
 
     hr {
         margin: 5px 0 10px 0;
@@ -369,6 +367,11 @@ $kw: 75px;
 }
 
 @media screen and (max-width: 480px) {
+    html,body {
+        width:100vw;
+        height:100vh;
+    }
+
     nav {
         display:block;
         left:5vw;
@@ -394,7 +397,7 @@ $kw: 75px;
 
     #enlarge {
         left:50vw;
-        top:65vh;
+        top:50vh;
         width:306px;
         height:306px;
 
@@ -426,7 +429,7 @@ $kw: 75px;
     $h: $w;
     #container {
         left:50vw;
-        top:65vh;
+        top:60vh;
         margin-left: -($w/2);
         margin-top: -($h/2);
 

@@ -26,8 +26,6 @@
 
 html, body {
   margin: 0;
-  width: 100%;
-  height: 100%;
   width: 50000px;
   height: 50000px;
   background-image: url(/img/dot.svg);
@@ -115,7 +113,7 @@ nav {
   left: 25px;
   top: 35px;
   position: fixed;
-  z-index: 999; }
+  z-index: 99; }
   nav hr {
     margin: 5px 0 10px 0;
     border-color: blue; }
@@ -376,6 +374,9 @@ nav {
         transform: translateY(47.5vh) rotateX(-90deg); }
 
 @media screen and (max-width: 480px) {
+  html, body {
+    width: 100vw;
+    height: 100vh; }
   nav {
     display: block;
     left: 5vw;
@@ -395,7 +396,7 @@ nav {
       float: left; }
   #enlarge {
     left: 50vw;
-    top: 65vh;
+    top: 50vh;
     width: 306px;
     height: 306px;
     margin-left: -153px;
@@ -414,7 +415,7 @@ nav {
     display: none; }
   #container {
     left: 50vw;
-    top: 65vh;
+    top: 60vh;
     margin-left: -45vw;
     margin-top: -45vw; }
     #container #cube {
