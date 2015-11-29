@@ -373,6 +373,15 @@ nav {
         -ms-transform: translateY(47.5vh) rotateX(-90deg);
         transform: translateY(47.5vh) rotateX(-90deg); }
 
+html[data-useragent*='MSIE 10.0'] nav a {
+  float: left; }
+
+html[data-useragent*='MSIE 10.0'] #container #cube .face.photos {
+  display: block; }
+
+html[data-useragent*='MSIE 10.0'] #container #cube .face.instagram {
+  display: block; }
+
 @media screen and (max-width: 480px) {
   html, body {
     width: 100vw;
@@ -423,6 +432,17 @@ nav {
       height: 90vw; }
       #container #cube .face {
         /* geometry definitions */ }
+        #container #cube .face.instagram .photo {
+          margin-top: 5px; }
+          #container #cube .face.instagram .photo h3 {
+            display: none; }
+        #container #cube .face .lock {
+          position: absolute;
+          right: 3px;
+          top: 3px;
+          width: 35px;
+          cursor: pointer;
+          z-index: 100; }
         #container #cube .face.front {
           -webkit-transform: translateZ(45vw);
           -moz-transform: translateZ(45vw);
@@ -452,18 +472,7 @@ nav {
           -webkit-transform: translateY(45vw) rotateX(-90deg);
           -moz-transform: translateY(45vw) rotateX(-90deg);
           -ms-transform: translateY(45vw) rotateX(-90deg);
-          transform: translateY(45vw) rotateX(-90deg); }
-        #container #cube .face.instagram .photo {
-          margin-top: 5px; }
-          #container #cube .face.instagram .photo h3 {
-            display: none; }
-        #container #cube .face .lock {
-          position: absolute;
-          right: 3px;
-          top: 3px;
-          width: 35px;
-          cursor: pointer;
-          z-index: 100; } }
+          transform: translateY(45vw) rotateX(-90deg); } }
 
 @media screen and (max-width: 320px) {
   nav hr {

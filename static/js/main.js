@@ -191,6 +191,9 @@ $.getJSON(URL+'/photography/',function (data){
 			 .append("<meta name='og:image' content="+face+">");
 })
 
+var doc = document.documentElement;
+doc.setAttribute('data-useragent', navigator.userAgent);
+
 $(function (){
 	/* supress intial centering operation */
 	setTimeout(function (){

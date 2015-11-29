@@ -185,7 +185,6 @@ $kw: 75px;
 	}
 }
 
-
 #container {
 	position:fixed;
 	left: 50%;
@@ -366,6 +365,26 @@ $kw: 75px;
 	}
 }
 
+html[data-useragent*='MSIE 10.0'] {
+
+    nav {
+        a {
+            float:left;
+        }
+    }
+
+    #container #cube .face {
+
+        &.photos {
+            display:block;
+        }
+
+        &.instagram {
+            display:block;
+        }
+    }
+}
+
 @media screen and (max-width: 480px) {
     html,body {
         width:100vw;
@@ -438,9 +457,6 @@ $kw: 75px;
             height:$h;
 
             .face {
-                /* geometry definitions */
-                @include faces($w);
-
                 &.instagram {
                     .photo {
                         margin-top:5px;
@@ -460,6 +476,8 @@ $kw: 75px;
                     z-index:100;
                 }
 
+                /* geometry definitions */
+                @include faces($w);
             }
         }
     }
